@@ -81,6 +81,11 @@ const ScholarshipDetail = () => {
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
+            {scholarship.image_url && (
+              <div className="rounded-lg overflow-hidden border border-border">
+                <img src={scholarship.image_url} alt={scholarship.title} className="w-full h-64 object-cover" />
+              </div>
+            )}
             <div className="flex items-center gap-3">
               <Badge className="bg-primary/10 text-primary border-primary/20" variant="outline">
                 Scholarship

@@ -45,7 +45,12 @@ const Webinars = () => {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filtered.map((w) => (
-                <Card key={w.id} className="card-hover">
+                <Card key={w.id} className="card-hover overflow-hidden">
+                  {w.image_url && (
+                    <div className="w-full h-40 overflow-hidden">
+                      <img src={w.image_url} alt={w.title} className="w-full h-full object-cover" />
+                    </div>
+                  )}
                   <CardHeader className="pb-3">
                     <Badge className="bg-primary/10 text-primary" variant="outline">
                       Webinar

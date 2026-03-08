@@ -27,6 +27,7 @@ export type Database = {
           event_time: string | null
           featured: boolean | null
           id: string
+          image_url: string | null
           job_description_full: string | null
           job_requirements: string | null
           link: string
@@ -50,6 +51,7 @@ export type Database = {
           event_time?: string | null
           featured?: boolean | null
           id?: string
+          image_url?: string | null
           job_description_full?: string | null
           job_requirements?: string | null
           link: string
@@ -73,6 +75,7 @@ export type Database = {
           event_time?: string | null
           featured?: boolean | null
           id?: string
+          image_url?: string | null
           job_description_full?: string | null
           job_requirements?: string | null
           link?: string

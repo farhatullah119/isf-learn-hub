@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import ImageUpload from "./ImageUpload";
 import type { TablesInsert } from "@/integrations/supabase/types";
 
 type OpportunityInsert = TablesInsert<"opportunities">;
@@ -39,6 +40,7 @@ const emptyForm: OpportunityInsert = {
   job_requirements: "",
   work_experience: "",
   submission_guidelines: "",
+  image_url: "",
 };
 
 interface OpportunityFormProps {
@@ -72,6 +74,7 @@ export default function OpportunityForm({ open, onOpenChange, editingId, initial
         job_requirements: initialData.job_requirements || "",
         work_experience: initialData.work_experience || "",
         submission_guidelines: initialData.submission_guidelines || "",
+        image_url: initialData.image_url || "",
       };
     }
     return { ...emptyForm, category: defaultCategory || "scholarship" };
@@ -115,6 +118,13 @@ export default function OpportunityForm({ open, onOpenChange, editingId, initial
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-2 sm:col-span-2">
+              <Label>Thumbnail Image</Label>
+              <ImageUpload
+                imageUrl={form.image_url || null}
+                onUploaded={(url) => setForm({ ...form, image_url: url || "" })}
+              />
+            </div>
             <div className="space-y-2 sm:col-span-2">
               <Label>Title *</Label>
               <Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} required />
