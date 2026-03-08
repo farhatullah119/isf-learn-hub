@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MapPin, Clock, Building2, ExternalLink, ArrowLeft, Calendar, Briefcase, AlertTriangle } from "lucide-react";
 import { isDeadlineExpired } from "@/lib/deadline";
+import SaveButton from "@/components/SaveButton";
 
 const InternshipDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -54,10 +55,13 @@ const InternshipDetail = () => {
                 <img src={item.image_url} alt={item.title} className="w-full h-64 object-cover" />
               </div>
             )}
-            <div className="flex items-center gap-3">
-              <Badge className="bg-secondary/10 text-secondary border-secondary/20" variant="outline">Internship</Badge>
-              {expired && <Badge variant="destructive" className="flex items-center gap-1"><AlertTriangle className="w-3 h-3" />Expired</Badge>}
-              {item.featured && <Badge className="bg-secondary/10 text-secondary border-secondary/20" variant="outline">Featured</Badge>}
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <Badge className="bg-secondary/10 text-secondary border-secondary/20" variant="outline">Internship</Badge>
+                {expired && <Badge variant="destructive" className="flex items-center gap-1"><AlertTriangle className="w-3 h-3" />Expired</Badge>}
+                {item.featured && <Badge className="bg-secondary/10 text-secondary border-secondary/20" variant="outline">Featured</Badge>}
+              </div>
+              <SaveButton opportunityId={item.id} variant="full" />
             </div>
             <Card><CardContent className="p-6"><h2 className="font-serif text-xl font-bold mb-4">Internship Details</h2><div className="prose prose-sm max-w-none text-muted-foreground space-y-3">{descriptionParagraphs.map((p, i) => <p key={i}>{p}</p>)}</div></CardContent></Card>
           </div>

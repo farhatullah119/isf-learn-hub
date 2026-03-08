@@ -146,6 +146,35 @@ export type Database = {
         }
         Relationships: []
       }
+      saved_opportunities: {
+        Row: {
+          id: string
+          opportunity_id: string
+          saved_at: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          opportunity_id: string
+          saved_at?: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          opportunity_id?: string
+          saved_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "saved_opportunities_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           id: string

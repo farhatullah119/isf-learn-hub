@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, GraduationCap, MessageCircle, LogIn, UserPlus, LogOut, User, Loader2, Mail } from "lucide-react";
+import { Menu, X, GraduationCap, MessageCircle, LogIn, UserPlus, LogOut, User, Loader2, Mail, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
@@ -97,6 +97,12 @@ const Layout = ({ children }: LayoutProps) => {
                 <>
                   {user ? (
                     <div className="flex items-center gap-1 ml-2">
+                      <Link to="/saved">
+                        <Button variant="ghost" size="sm" className="gap-1.5">
+                          <Heart className="w-4 h-4" />
+                          Saved
+                        </Button>
+                      </Link>
                       <Link to="/profile">
                         <Button variant="ghost" size="sm" className="gap-1.5">
                           <User className="w-4 h-4" />
@@ -164,6 +170,14 @@ const Layout = ({ children }: LayoutProps) => {
                 <div className="border-t border-border pt-2 mt-2 space-y-2">
                   {user ? (
                     <>
+                      <Link
+                        to="/saved"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted"
+                      >
+                        <Heart className="w-4 h-4" />
+                        Saved
+                      </Link>
                       <Link
                         to="/profile"
                         onClick={() => setMobileMenuOpen(false)}

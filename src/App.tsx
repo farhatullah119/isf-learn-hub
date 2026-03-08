@@ -23,6 +23,7 @@ import AdminInternships from "./pages/AdminInternships";
 import AdminWebinars from "./pages/AdminWebinars";
 import AdminCourses from "./pages/AdminCourses";
 import AdminSubscribers from "./pages/AdminSubscribers";
+import SavedOpportunities from "./pages/SavedOpportunities";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
 import About from "./pages/About";
@@ -64,6 +65,7 @@ const App = () => (
           <Route path="/admin/courses" element={<AdminCourses />} />
           <Route path="/admin/subscribers" element={<AdminSubscribers />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/saved" element={<SavedOpportunities />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

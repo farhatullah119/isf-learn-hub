@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MapPin, Clock, Building2, ExternalLink, ArrowLeft, Calendar, GraduationCap, AlertTriangle } from "lucide-react";
 import { isDeadlineExpired } from "@/lib/deadline";
+import SaveButton from "@/components/SaveButton";
 
 const ScholarshipDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -86,7 +87,8 @@ const ScholarshipDetail = () => {
                 <img src={scholarship.image_url} alt={scholarship.title} className="w-full h-64 object-cover" />
               </div>
             )}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
               <Badge className="bg-primary/10 text-primary border-primary/20" variant="outline">
                 Scholarship
               </Badge>
@@ -101,6 +103,8 @@ const ScholarshipDetail = () => {
                   Featured
                 </Badge>
               )}
+              </div>
+              <SaveButton opportunityId={scholarship.id} variant="full" />
             </div>
 
             <Card>

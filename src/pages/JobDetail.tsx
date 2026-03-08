@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MapPin, Clock, Building2, ExternalLink, ArrowLeft, Calendar, Briefcase, AlertTriangle, Info, FileText, GraduationCap, ClipboardList, Send } from "lucide-react";
 import { isDeadlineExpired } from "@/lib/deadline";
+import SaveButton from "@/components/SaveButton";
 
 const SectionCard = ({ icon: Icon, title, content }: { icon: React.ElementType; title: string; content: string }) => {
   const lines = content.split("\n").filter((l) => l.trim());
@@ -153,22 +154,24 @@ const JobDetail = () => {
                 <img src={job.image_url} alt={job.title} className="w-full h-64 object-cover" />
               </div>
             )}
-            {/* Status Badges */}
-            <div className="flex items-center gap-3 flex-wrap">
-              <Badge className="bg-accent/10 text-accent-foreground border-accent/20" variant="outline">
-                Job
-              </Badge>
-              {expired && (
-                <Badge variant="destructive" className="flex items-center gap-1">
-                  <AlertTriangle className="w-3 h-3" />
-                  Expired
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3 flex-wrap">
+                <Badge className="bg-accent/10 text-accent-foreground border-accent/20" variant="outline">
+                  Job
                 </Badge>
-              )}
-              {job.featured && (
-                <Badge className="bg-secondary/10 text-secondary border-secondary/20" variant="outline">
-                  Featured
-                </Badge>
-              )}
+                {expired && (
+                  <Badge variant="destructive" className="flex items-center gap-1">
+                    <AlertTriangle className="w-3 h-3" />
+                    Expired
+                  </Badge>
+                )}
+                {job.featured && (
+                  <Badge className="bg-secondary/10 text-secondary border-secondary/20" variant="outline">
+                    Featured
+                  </Badge>
+                )}
+              </div>
+              <SaveButton opportunityId={job.id} variant="full" />
             </div>
 
             {/* Structured Sections */}
