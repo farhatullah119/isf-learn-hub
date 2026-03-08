@@ -1,13 +1,15 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import SearchBar from "@/components/SearchBar";
-import { MapPin, Clock, Building2, ExternalLink } from "lucide-react";
+import { MapPin, Clock, Building2, ExternalLink, AlertTriangle } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { Skeleton } from "@/components/ui/skeleton";
 import PageHeader from "@/components/PageHeader";
+import { isDeadlineExpired } from "@/lib/deadline";
 
 const Jobs = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -46,53 +48,63 @@ const Jobs = () => {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filtered.map((j) => (
-                <Card key={j.id} className="card-hover">
-                  <CardHeader className="pb-3">
-                    <Badge className="bg-accent/10 text-accent-foreground border-accent/20" variant="outline">
-                      Job
-                    </Badge>
-                    <h3 className="font-serif text-lg font-semibold mt-2">{j.title}</h3>
-                    {j.provider && (
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Building2 className="w-4 h-4" />
-                        <span>{j.provider}</span>
-                      </div>
-                    )}
-                  </CardHeader>
-                  <CardContent className="pb-3">
-                    <p className="text-sm text-muted-foreground mb-4">{j.description}</p>
-                    <div className="space-y-2 text-sm">
-                      {j.location && (
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <MapPin className="w-4 h-4" />
-                          <span>{j.location}</span>
+              {filtered.map((j) => {
+                const expired = isDeadlineExpired(j.deadline);
+                return (
+                  <Link key={j.id} to={`/jobs/${j.id}`}>
+                    <Card className={`card-hover h-full ${expired ? "opacity-75" : ""}`}>
+                      <CardHeader className="pb-3">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <Badge className="bg-accent/10 text-accent-foreground border-accent/20" variant="outline">
+                            Job
+                          </Badge>
+                          {expired && (
+                            <Badge variant="destructive" className="flex items-center gap-1">
+                              <AlertTriangle className="w-3 h-3" />
+                              Expired
+                            </Badge>
+                          )}
                         </div>
-                      )}
-                      {j.duration && (
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <Clock className="w-4 h-4" />
-                          <span>{j.duration}</span>
+                        <h3 className="font-serif text-lg font-semibold mt-2">{j.title}</h3>
+                        {j.provider && (
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <Building2 className="w-4 h-4" />
+                            <span>{j.provider}</span>
+                          </div>
+                        )}
+                      </CardHeader>
+                      <CardContent className="pb-3">
+                        <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{j.description}</p>
+                        <div className="space-y-2 text-sm">
+                          {j.location && (
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <MapPin className="w-4 h-4" />
+                              <span>{j.location}</span>
+                            </div>
+                          )}
+                          {j.duration && (
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <Clock className="w-4 h-4" />
+                              <span>{j.duration}</span>
+                            </div>
+                          )}
+                          {j.deadline && (
+                            <div className={`flex items-center gap-2 ${expired ? "text-destructive" : "text-muted-foreground"}`}>
+                              <Clock className="w-4 h-4" />
+                              <span>Deadline: {j.deadline}{expired ? " (Expired)" : ""}</span>
+                            </div>
+                          )}
                         </div>
-                      )}
-                      {j.deadline && (
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <Clock className="w-4 h-4" />
-                          <span>Deadline: {j.deadline}</span>
-                        </div>
-                      )}
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button className="w-full" asChild>
-                      <a href={j.link} target="_blank" rel="noopener noreferrer">
-                        Apply Now
-                        <ExternalLink className="w-4 h-4 ml-2" />
-                      </a>
-                    </Button>
-                  </CardFooter>
-                </Card>
-              ))}
+                      </CardContent>
+                      <CardFooter>
+                        <Button className="w-full" variant={expired ? "outline" : "default"}>
+                          {expired ? "View Details" : "View & Apply"}
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  </Link>
+                );
+              })}
             </div>
           )}
           {!isLoading && filtered.length === 0 && (
