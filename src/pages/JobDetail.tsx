@@ -86,7 +86,6 @@ const JobDetail = () => {
     { icon: Briefcase, label: "Category", value: job.category },
   ].filter((item) => item.value);
 
-  // Check for structured fields
   const hasStructuredData = job.about_org || job.job_description_full || job.job_requirements || job.work_experience || job.submission_guidelines;
 
   return (
@@ -103,9 +102,53 @@ const JobDetail = () => {
         </Link>
 
         <div className="grid lg:grid-cols-3 gap-8">
+          {/* Sidebar - Job Overview (appears first) */}
+          <div className="space-y-6 lg:order-2">
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="font-serif text-lg font-bold mb-4">Job Overview</h3>
+                <div className="space-y-4">
+                  {overviewItems.map((item) => (
+                    <div key={item.label} className="flex items-start gap-3">
+                      <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <item.icon className="w-4 h-4 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground">{item.label}</p>
+                        <p className={`text-sm font-medium ${item.label === "Deadline" && expired ? "text-destructive" : "text-foreground"}`}>
+                          {item.value}
+                          {item.label === "Deadline" && expired && " (Expired)"}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                {expired ? (
+                  <div className="text-center">
+                    <AlertTriangle className="w-8 h-8 text-destructive mx-auto mb-2" />
+                    <p className="text-sm font-medium text-destructive mb-1">Application Closed</p>
+                    <p className="text-xs text-muted-foreground">The deadline for this position has passed.</p>
+                  </div>
+                ) : (
+                  <Button className="w-full" size="lg" asChild>
+                    <a href={job.link} target="_blank" rel="noopener noreferrer">
+                      Apply Now
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </a>
+                  </Button>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Status Badge */}
+          <div className="lg:col-span-2 space-y-6 lg:order-1">
+            {/* Status Badges */}
             <div className="flex items-center gap-3 flex-wrap">
               <Badge className="bg-accent/10 text-accent-foreground border-accent/20" variant="outline">
                 Job
@@ -169,50 +212,6 @@ const JobDetail = () => {
                 </CardContent>
               </Card>
             )}
-          </div>
-
-          {/* Sidebar */}
-          <div className="space-y-6">
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="font-serif text-lg font-bold mb-4">Job Overview</h3>
-                <div className="space-y-4">
-                  {overviewItems.map((item) => (
-                    <div key={item.label} className="flex items-start gap-3">
-                      <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <item.icon className="w-4 h-4 text-primary" />
-                      </div>
-                      <div>
-                        <p className="text-xs text-muted-foreground">{item.label}</p>
-                        <p className={`text-sm font-medium ${item.label === "Deadline" && expired ? "text-destructive" : "text-foreground"}`}>
-                          {item.value}
-                          {item.label === "Deadline" && expired && " (Expired)"}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                {expired ? (
-                  <div className="text-center">
-                    <AlertTriangle className="w-8 h-8 text-destructive mx-auto mb-2" />
-                    <p className="text-sm font-medium text-destructive mb-1">Application Closed</p>
-                    <p className="text-xs text-muted-foreground">The deadline for this position has passed.</p>
-                  </div>
-                ) : (
-                  <Button className="w-full" size="lg" asChild>
-                    <a href={job.link} target="_blank" rel="noopener noreferrer">
-                      Apply Now
-                      <ExternalLink className="w-4 h-4 ml-2" />
-                    </a>
-                  </Button>
-                )}
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>
