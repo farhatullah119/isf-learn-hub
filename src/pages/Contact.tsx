@@ -62,8 +62,8 @@ const Contact = () => {
                       <p className="text-sm text-muted-foreground mb-2">
                         For general inquiries and support
                       </p>
-                      <a href="mailto:hello@isflearninghub.org" className="text-primary hover:underline text-sm">
-                        hello@isflearninghub.org
+                      <a href="mailto:farhatdilawarzai@gmail.com" className="text-primary hover:underline text-sm">
+                        farhatdilawarzai@gmail.com
                       </a>
                     </div>
                   </div>
@@ -77,12 +77,12 @@ const Contact = () => {
                       <MessageSquare className="w-5 h-5 text-secondary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1">Community</h3>
+                      <h3 className="font-semibold mb-1">WhatsApp Channel</h3>
                       <p className="text-sm text-muted-foreground mb-2">
-                        Join our student community
+                        Join our WhatsApp channel for updates
                       </p>
-                      <a href="#" className="text-secondary hover:underline text-sm">
-                        Join Discord Server
+                      <a href="https://whatsapp.com/channel/0029VauLh2hFXUucg7QyOg2r" target="_blank" rel="noopener noreferrer" className="text-secondary hover:underline text-sm">
+                        Join WhatsApp Channel
                       </a>
                     </div>
                   </div>
