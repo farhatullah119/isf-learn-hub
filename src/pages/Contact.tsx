@@ -62,8 +62,8 @@ const Contact = () => {
                       <p className="text-sm text-muted-foreground mb-2">
                         For general inquiries and support
                       </p>
-                      <a href="mailto:hello@isflearninghub.org" className="text-primary hover:underline text-sm">
-                        hello@isflearninghub.org
+                      <a href="mailto:farhatdilawarzai@gmail.com" className="text-primary hover:underline text-sm">
+                        farhatdilawarzai@gmail.com
                       </a>
                     </div>
                   </div>
