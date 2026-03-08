@@ -10,7 +10,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { supabase } from "@/integrations/supabase/client";
-import { Mail, Calendar, Shield, LogOut, Pencil, Save, X } from "lucide-react";
+import { User, Mail, Calendar, Shield, LogOut, Pencil, Save, X } from "lucide-react";
 import AvatarUpload from "@/components/AvatarUpload";
 
 const Profile = () => {
