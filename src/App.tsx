@@ -22,6 +22,7 @@ import AdminScholarships from "./pages/AdminScholarships";
 import AdminInternships from "./pages/AdminInternships";
 import AdminWebinars from "./pages/AdminWebinars";
 import AdminCourses from "./pages/AdminCourses";
+import AdminSubscribers from "./pages/AdminSubscribers";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
 import About from "./pages/About";
