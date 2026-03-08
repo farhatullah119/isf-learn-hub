@@ -19,6 +19,7 @@ import Register from "./pages/Register";
 import Admin from "./pages/Admin";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
+import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/resources" element={<Resources />} />
           <Route path="/apply" element={<Apply />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />

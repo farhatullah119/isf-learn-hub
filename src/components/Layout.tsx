@@ -15,6 +15,7 @@ const navLinks = [
   { name: "Study Resources", path: "/resources" },
   { name: "Apply", path: "/apply" },
   { name: "Contact", path: "/contact" },
+  { name: "About", path: "/about" },
 ];
 
 interface LayoutProps {
