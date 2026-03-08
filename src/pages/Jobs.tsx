@@ -10,6 +10,7 @@ import { useOpportunities } from "@/hooks/use-opportunities";
 import { Skeleton } from "@/components/ui/skeleton";
 import PageHeader from "@/components/PageHeader";
 import { isDeadlineExpired } from "@/lib/deadline";
+import SaveButton from "@/components/SaveButton";
 
 const Jobs = () => {
   const [searchQuery, setSearchQuery] = useState("");
