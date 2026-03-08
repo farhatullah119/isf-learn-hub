@@ -63,6 +63,31 @@ const Layout = ({ children }: LayoutProps) => {
                   {link.name}
                 </Link>
               ))}
+              {!loading && (
+                <>
+                  {user ? (
+                    <Button variant="ghost" size="sm" onClick={handleSignOut} className="ml-2 gap-1.5">
+                      <LogOut className="w-4 h-4" />
+                      Sign Out
+                    </Button>
+                  ) : (
+                    <>
+                      <Link to="/login">
+                        <Button variant="ghost" size="sm" className="ml-2 gap-1.5">
+                          <LogIn className="w-4 h-4" />
+                          Login
+                        </Button>
+                      </Link>
+                      <Link to="/register">
+                        <Button size="sm" className="gap-1.5">
+                          <UserPlus className="w-4 h-4" />
+                          Register
+                        </Button>
+                      </Link>
+                    </>
+                  )}
+                </>
+              )}
             </nav>
 
             {/* Mobile menu button */}
