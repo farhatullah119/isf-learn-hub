@@ -131,9 +131,12 @@ const Profile = () => {
         {/* Avatar & Name */}
         <Card>
           <CardContent className="p-6 flex items-center gap-4">
-            <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-              <User className="h-8 w-8 text-primary" />
-            </div>
+            <AvatarUpload
+              userId={user.id}
+              avatarUrl={profile?.avatar_url ?? null}
+              fullName={profile?.full_name ?? null}
+              onUploaded={(url) => fetchProfile(user.id)}
+            />
             <div>
               <h2 className="font-serif text-xl font-bold">{profile?.full_name || user.email}</h2>
               <p className="text-sm text-muted-foreground">
