@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Mail, MessageSquare, MapPin, Send, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import PageHeader from "@/components/PageHeader";
 
 const Contact = () => {
   const { toast } = useToast();

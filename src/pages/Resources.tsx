@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import PageHeader from "@/components/PageHeader";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, FileText, Video, Download, ExternalLink, GraduationCap, PenTool, Calculator } from "lucide-react";
