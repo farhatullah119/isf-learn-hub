@@ -26,11 +26,6 @@ const Webinars = () => {
       <PageHeader
         title="Webinars & Seminars"
         description="Join free webinars and seminars from industry experts and thought leaders."
-      />
-            Join free online events led by experts. Learn from industry professionals and connect with fellow students.
-          </p>
-        </div>
-      </section>
 
       <section className="py-8 border-b border-border bg-card">
         <div className="container mx-auto px-4">
