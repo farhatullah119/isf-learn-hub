@@ -26,14 +26,40 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [subEmail, setSubEmail] = useState("");
+  const [subscribing, setSubscribing] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { user, profile, loading, signOut } = useAuth();
+  const { toast } = useToast();
   const displayName = profile?.full_name || (user?.email?.split("@")[0] ?? "Profile");
 
   const handleSignOut = async () => {
     await signOut();
     navigate("/");
+  };
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!subEmail.trim()) return;
+    setSubscribing(true);
+    try {
+      const { error } = await supabase.from("newsletter_subscribers").insert({ email: subEmail.trim().toLowerCase() } as any);
+      if (error) {
+        if (error.code === "23505") {
+          toast({ title: "Already subscribed!", description: "This email is already on our list." });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({ title: "Subscribed! 🎉", description: "You'll receive new opportunities in your inbox." });
+      }
+      setSubEmail("");
+    } catch (err: any) {
+      toast({ title: "Error", description: err.message, variant: "destructive" });
+    } finally {
+      setSubscribing(false);
+    }
   };
 
   return (
