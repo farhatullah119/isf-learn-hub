@@ -4,6 +4,7 @@ import SearchBar from "@/components/SearchBar";
 import OpportunityCard from "@/components/OpportunityCard";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { Skeleton } from "@/components/ui/skeleton";
+import PageHeader from "@/components/PageHeader";
 
 const Internships = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -19,16 +20,10 @@ const Internships = () => {
 
   return (
     <Layout>
-      <section className="bg-secondary py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <h1 className="font-serif text-3xl md:text-5xl font-bold text-secondary-foreground mb-4">
-            Internships
-          </h1>
-          <p className="text-lg text-secondary-foreground/90 max-w-2xl">
-            Kickstart your career with internship opportunities at leading companies and organizations worldwide.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        title="Internships"
+        description="Kickstart your career with internship opportunities at leading companies and organizations worldwide."
+      />
 
       <section className="py-8 border-b border-border bg-card">
         <div className="container mx-auto px-4 space-y-4">

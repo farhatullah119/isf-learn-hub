@@ -5,6 +5,7 @@ import CategoryFilter from "@/components/CategoryFilter";
 import OpportunityCard from "@/components/OpportunityCard";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { Skeleton } from "@/components/ui/skeleton";
+import PageHeader from "@/components/PageHeader";
 
 const regions = ["United States", "United Kingdom", "Germany", "Europe", "Australia", "Sweden"];
 
@@ -23,17 +24,10 @@ const Scholarships = () => {
 
   return (
     <Layout>
-      <section className="bg-primary py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <h1 className="font-serif text-3xl md:text-5xl font-bold text-primary-foreground mb-4">
-            Scholarships
-          </h1>
-          <p className="text-lg text-primary-foreground/90 max-w-2xl">
-            Discover fully funded scholarships from universities and organizations around the world.
-          </p>
-        </div>
-      </section>
-
+      <PageHeader
+        title="Scholarships"
+        description="Discover scholarships from around the world to fund your education and achieve your academic dreams."
+      />
       <section className="py-8 border-b border-border bg-card">
         <div className="container mx-auto px-4 space-y-4">
           <SearchBar value={searchQuery} onChange={setSearchQuery} placeholder="Search scholarships..." />
