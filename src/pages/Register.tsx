@@ -8,6 +8,8 @@ import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import Layout from "@/components/Layout";
 import { UserPlus } from "lucide-react";
+import { lovable } from "@/integrations/lovable/index";
+import { Separator } from "@/components/ui/separator";
 
 const Register = () => {
   const [email, setEmail] = useState("");
