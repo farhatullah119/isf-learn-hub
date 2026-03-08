@@ -17,6 +17,11 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Admin from "./pages/Admin";
+import AdminJobs from "./pages/AdminJobs";
+import AdminScholarships from "./pages/AdminScholarships";
+import AdminInternships from "./pages/AdminInternships";
+import AdminWebinars from "./pages/AdminWebinars";
+import AdminCourses from "./pages/AdminCourses";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
 import About from "./pages/About";
@@ -51,6 +56,11 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/jobs" element={<AdminJobs />} />
+          <Route path="/admin/scholarships" element={<AdminScholarships />} />
+          <Route path="/admin/internships" element={<AdminInternships />} />
+          <Route path="/admin/webinars" element={<AdminWebinars />} />
+          <Route path="/admin/courses" element={<AdminCourses />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
