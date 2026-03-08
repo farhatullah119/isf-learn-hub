@@ -7,8 +7,10 @@ import Index from "./pages/Index";
 import Scholarships from "./pages/Scholarships";
 import ScholarshipDetail from "./pages/ScholarshipDetail";
 import Internships from "./pages/Internships";
+import InternshipDetail from "./pages/InternshipDetail";
 import Webinars from "./pages/Webinars";
 import Courses from "./pages/Courses";
+import CourseDetail from "./pages/CourseDetail";
 import Resources from "./pages/Resources";
 import Apply from "./pages/Apply";
 import Contact from "./pages/Contact";
@@ -31,8 +33,10 @@ const App = () => (
           <Route path="/scholarships" element={<Scholarships />} />
           <Route path="/scholarships/:id" element={<ScholarshipDetail />} />
           <Route path="/internships" element={<Internships />} />
+          <Route path="/internships/:id" element={<InternshipDetail />} />
           <Route path="/webinars" element={<Webinars />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:id" element={<CourseDetail />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/jobs/:id" element={<JobDetail />} />
           <Route path="/resources" element={<Resources />} />
