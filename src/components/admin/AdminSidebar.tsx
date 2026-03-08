@@ -8,6 +8,7 @@ import {
   Users,
   Settings,
   ArrowLeft,
+  Mail,
 } from "lucide-react";
 import {
   Sidebar,
