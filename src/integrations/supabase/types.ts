@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       opportunities: {
         Row: {
+          about_org: string | null
           attendees: number | null
           category: string
           created_at: string
@@ -26,14 +27,19 @@ export type Database = {
           event_time: string | null
           featured: boolean | null
           id: string
+          job_description_full: string | null
+          job_requirements: string | null
           link: string
           location: string | null
           provider: string | null
           speaker: string | null
+          submission_guidelines: string | null
           title: string
           updated_at: string
+          work_experience: string | null
         }
         Insert: {
+          about_org?: string | null
           attendees?: number | null
           category: string
           created_at?: string
@@ -44,14 +50,19 @@ export type Database = {
           event_time?: string | null
           featured?: boolean | null
           id?: string
+          job_description_full?: string | null
+          job_requirements?: string | null
           link: string
           location?: string | null
           provider?: string | null
           speaker?: string | null
+          submission_guidelines?: string | null
           title: string
           updated_at?: string
+          work_experience?: string | null
         }
         Update: {
+          about_org?: string | null
           attendees?: number | null
           category?: string
           created_at?: string
@@ -62,12 +73,16 @@ export type Database = {
           event_time?: string | null
           featured?: boolean | null
           id?: string
+          job_description_full?: string | null
+          job_requirements?: string | null
           link?: string
           location?: string | null
           provider?: string | null
           speaker?: string | null
+          submission_guidelines?: string | null
           title?: string
           updated_at?: string
+          work_experience?: string | null
         }
         Relationships: []
       }
