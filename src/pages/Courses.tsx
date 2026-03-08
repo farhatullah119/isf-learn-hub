@@ -56,10 +56,13 @@ const Courses = () => {
                         </div>
                       )}
                       <CardHeader className="pb-3">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <Badge className="bg-purple-100 text-purple-700 border-purple-200" variant="outline">Course</Badge>
-                          {expired && <Badge variant="destructive" className="flex items-center gap-1"><AlertTriangle className="w-3 h-3" />Expired</Badge>}
-                          {item.featured && <Badge className="bg-secondary/10 text-secondary border-secondary/20" variant="outline">Featured</Badge>}
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <Badge className="bg-purple-100 text-purple-700 border-purple-200" variant="outline">Course</Badge>
+                            {expired && <Badge variant="destructive" className="flex items-center gap-1"><AlertTriangle className="w-3 h-3" />Expired</Badge>}
+                            {item.featured && <Badge className="bg-secondary/10 text-secondary border-secondary/20" variant="outline">Featured</Badge>}
+                          </div>
+                          <SaveButton opportunityId={item.id} />
                         </div>
                         <h3 className="font-serif text-lg font-semibold mt-2">{item.title}</h3>
                         {item.provider && <div className="flex items-center gap-2 text-sm text-muted-foreground"><Building2 className="w-4 h-4" /><span>{item.provider}</span></div>}
