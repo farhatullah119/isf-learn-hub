@@ -97,6 +97,12 @@ const Layout = ({ children }: LayoutProps) => {
                 <>
                   {user ? (
                     <div className="flex items-center gap-1 ml-2">
+                      <Link to="/saved">
+                        <Button variant="ghost" size="sm" className="gap-1.5">
+                          <Heart className="w-4 h-4" />
+                          Saved
+                        </Button>
+                      </Link>
                       <Link to="/profile">
                         <Button variant="ghost" size="sm" className="gap-1.5">
                           <User className="w-4 h-4" />
