@@ -1,0 +1,2 @@
+ALTER TABLE public.opportunities DROP CONSTRAINT opportunities_category_check;
+ALTER TABLE public.opportunities ADD CONSTRAINT opportunities_category_check CHECK (category = ANY (ARRAY['Scholarship', 'Internship', 'Course', 'Webinar', 'Job']));
