@@ -21,6 +21,13 @@ const features = [
     color: "bg-secondary/10 text-secondary",
   },
   {
+    icon: Building2,
+    title: "Jobs",
+    description: "Find job opportunities from companies and organizations worldwide.",
+    link: "/jobs",
+    color: "bg-accent/10 text-accent-foreground",
+  },
+  {
     icon: Video,
     title: "Webinars & Seminars",
     description: "Join free webinars and seminars from industry experts.",
