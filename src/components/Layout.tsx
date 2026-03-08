@@ -259,15 +259,19 @@ const Layout = ({ children }: LayoutProps) => {
               <p className="text-sm text-primary-foreground/80 mb-3">
                 Subscribe to get the latest opportunities
               </p>
-              <div className="flex gap-2">
+              <form onSubmit={handleSubscribe} className="flex gap-2">
                 <Input
+                  type="email"
                   placeholder="Your email"
+                  value={subEmail}
+                  onChange={(e) => setSubEmail(e.target.value)}
+                  required
                   className="bg-primary-foreground/10 border-primary-foreground/20 placeholder:text-primary-foreground/50"
                 />
-                <Button variant="secondary" size="sm">
-                  Subscribe
+                <Button variant="secondary" size="sm" type="submit" disabled={subscribing}>
+                  {subscribing ? <Loader2 className="h-4 w-4 animate-spin" /> : "Subscribe"}
                 </Button>
-              </div>
+              </form>
             </div>
           </div>
           <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-sm text-primary-foreground/60">
