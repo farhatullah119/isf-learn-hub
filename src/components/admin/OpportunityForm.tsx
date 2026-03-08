@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import ImageUpload from "./ImageUpload";
 import type { TablesInsert } from "@/integrations/supabase/types";
 
 type OpportunityInsert = TablesInsert<"opportunities">;
