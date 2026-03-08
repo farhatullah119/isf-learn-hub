@@ -26,16 +26,6 @@ const resourceCategories = [
     ],
   },
   {
-    title: "Application Guides",
-    description: "Step-by-step guides for university and scholarship applications.",
-    icon: FileText,
-    resources: [
-      { name: "University Application Checklist", type: "PDF" },
-      { name: "Recommendation Letter Guide", type: "Article" },
-      { name: "Interview Preparation", type: "Video" },
-    ],
-  },
-  {
     title: "Study Skills",
     description: "Improve your learning techniques and academic performance.",
     icon: BookOpen,
