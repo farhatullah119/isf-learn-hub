@@ -62,7 +62,6 @@ const CourseDetail = () => {
               </div>
               <SaveButton opportunityId={item.id} variant="full" />
             </div>
-            </div>
             <Card><CardContent className="p-6"><h2 className="font-serif text-xl font-bold mb-4">Course Details</h2><div className="prose prose-sm max-w-none text-muted-foreground space-y-3">{descriptionParagraphs.map((p, i) => <p key={i}>{p}</p>)}</div></CardContent></Card>
           </div>
           <div className="space-y-6">
