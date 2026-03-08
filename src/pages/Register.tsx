@@ -80,7 +80,7 @@ const Register = () => {
                     id="fullName"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    placeholder="Ahmad Rahimi"
+                    placeholder="Farii Roshan"
                     required
                   />
                 </div>
