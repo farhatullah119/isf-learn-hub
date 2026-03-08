@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { User, Mail, Calendar, Shield, LogOut } from "lucide-react";
 
 const Profile = () => {
-  const { user, isAdmin, loading, signOut } = useAuth();
+  const { user, profile, isAdmin, loading, signOut } = useAuth();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
