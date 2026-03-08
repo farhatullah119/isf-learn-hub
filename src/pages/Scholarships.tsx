@@ -65,6 +65,7 @@ const Scholarships = () => {
                         </div>
                       )}
                       <CardHeader className="pb-3">
+                        <div className="flex items-start justify-between gap-2">
                         <div className="flex items-center gap-2 flex-wrap">
                           <Badge className="bg-primary/10 text-primary border-primary/20" variant="outline">
                             Scholarship
