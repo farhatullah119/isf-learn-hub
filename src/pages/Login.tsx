@@ -67,6 +67,11 @@ const Login = () => {
                   minLength={6}
                 />
               </div>
+              <div className="text-right">
+                <Link to="/forgot-password" className="text-xs text-muted-foreground underline hover:text-primary">
+                  Forgot password?
+                </Link>
+              </div>
               <Button type="submit" className="w-full" disabled={submitting}>
                 {submitting ? "Signing in..." : "Sign In"}
               </Button>
