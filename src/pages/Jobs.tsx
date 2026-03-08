@@ -74,8 +74,6 @@ const Jobs = () => {
                           </div>
                           <SaveButton opportunityId={j.id} />
                         </div>
-                          )}
-                        </div>
                         <h3 className="font-serif text-lg font-semibold mt-2">{j.title}</h3>
                         {j.provider && (
                           <div className="flex items-center gap-2 text-sm text-muted-foreground">
