@@ -103,6 +103,8 @@ const ScholarshipDetail = () => {
                   Featured
                 </Badge>
               )}
+              </div>
+              <SaveButton opportunityId={scholarship.id} variant="full" />
             </div>
 
             <Card>
