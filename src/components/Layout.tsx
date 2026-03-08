@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, GraduationCap, MessageCircle, LogIn, UserPlus, LogOut, User, Loader2, Mail } from "lucide-react";
+import { Menu, X, GraduationCap, MessageCircle, LogIn, UserPlus, LogOut, User, Loader2, Mail, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
