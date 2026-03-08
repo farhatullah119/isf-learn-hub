@@ -142,7 +142,7 @@ const Layout = ({ children }: LayoutProps) => {
                         className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted"
                       >
                         <User className="w-4 h-4" />
-                        Profile
+                        {displayName}
                       </Link>
                       <button
                         onClick={() => { handleSignOut(); setMobileMenuOpen(false); }}

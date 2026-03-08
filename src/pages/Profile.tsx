@@ -71,9 +71,9 @@ const Profile = () => {
               <User className="h-8 w-8 text-primary" />
             </div>
             <div>
-              <h2 className="font-serif text-xl font-bold">{user.email}</h2>
+              <h2 className="font-serif text-xl font-bold">{profile?.full_name || user.email}</h2>
               <p className="text-sm text-muted-foreground">
-                {isAdmin ? "Administrator" : "Member"}
+                {profile?.occupation || (isAdmin ? "Administrator" : "Member")}
               </p>
             </div>
           </CardContent>

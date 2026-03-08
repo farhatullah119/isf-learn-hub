@@ -2,10 +2,27 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import type { User } from "@supabase/supabase-js";
 
+interface Profile {
+  full_name: string | null;
+  occupation: string | null;
+  phone: string | null;
+  location: string | null;
+}
+
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const fetchProfile = async (userId: string) => {
+    const { data } = await supabase
+      .from("profiles")
+      .select("full_name, occupation, phone, location")
+      .eq("user_id", userId)
+      .maybeSingle();
+    setProfile(data);
+  };
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -21,8 +38,10 @@ export function useAuth() {
             .eq("role", "admin")
             .maybeSingle();
           setIsAdmin(!!data);
+          await fetchProfile(currentUser.id);
         } else {
           setIsAdmin(false);
+          setProfile(null);
         }
         setLoading(false);
       }
@@ -40,6 +59,7 @@ export function useAuth() {
           .eq("role", "admin")
           .maybeSingle();
         setIsAdmin(!!data);
+        await fetchProfile(currentUser.id);
       }
       setLoading(false);
     });
@@ -61,5 +81,5 @@ export function useAuth() {
     await supabase.auth.signOut();
   };
 
-  return { user, isAdmin, loading, signIn, signUp, signOut };
+  return { user, profile, isAdmin, loading, signIn, signUp, signOut, fetchProfile };
 }
