@@ -21,6 +21,8 @@ import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
