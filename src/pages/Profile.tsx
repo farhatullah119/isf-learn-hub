@@ -1,15 +1,75 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/use-auth";
+import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
-import { User, Mail, Calendar, Shield, LogOut } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { User, Mail, Calendar, Shield, LogOut, Pencil, Save, X } from "lucide-react";
 
 const Profile = () => {
-  const { user, profile, isAdmin, loading, signOut } = useAuth();
+  const { user, profile, isAdmin, loading, signOut, fetchProfile } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [editing, setEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [form, setForm] = useState({
+    full_name: "",
+    occupation: "",
+    phone: "",
+    location: "",
+  });
+
+  useEffect(() => {
+    if (profile) {
+      setForm({
+        full_name: profile.full_name || "",
+        occupation: profile.occupation || "",
+        phone: profile.phone || "",
+        location: profile.location || "",
+      });
+    }
+  }, [profile]);
+
+  const handleSave = async () => {
+    if (!user) return;
+    setSaving(true);
+    try {
+      const { error } = await supabase
+        .from("profiles")
+        .upsert({
+          user_id: user.id,
+          full_name: form.full_name || null,
+          occupation: form.occupation || null,
+          phone: form.phone || null,
+          location: form.location || null,
+        }, { onConflict: "user_id" });
+
+      if (error) throw error;
+      await fetchProfile(user.id);
+      setEditing(false);
+      toast({ title: "Profile updated", description: "Your changes have been saved." });
+    } catch (error: any) {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleCancel = () => {
+    setForm({
+      full_name: profile?.full_name || "",
+      occupation: profile?.occupation || "",
+      phone: profile?.phone || "",
+      location: profile?.location || "",
+    });
+    setEditing(false);
+  };
 
   const handleSignOut = async () => {
     await signOut();
@@ -39,12 +99,8 @@ const Profile = () => {
     );
   }
 
-  const details = [
-    { icon: User, label: "Full Name", value: profile?.full_name || "—" },
+  const readOnlyDetails = [
     { icon: Mail, label: "Email", value: user.email },
-    { icon: Shield, label: "Occupation", value: profile?.occupation || "—" },
-    { icon: Mail, label: "Phone", value: profile?.phone || "—" },
-    { icon: Shield, label: "Location", value: profile?.location || "—" },
     {
       icon: Calendar,
       label: "Account Created",
@@ -57,6 +113,13 @@ const Profile = () => {
         : "—",
     },
     { icon: Shield, label: "Role", value: isAdmin ? "Admin" : "User" },
+  ];
+
+  const editableFields = [
+    { key: "full_name" as const, label: "Full Name", placeholder: "Your full name" },
+    { key: "occupation" as const, label: "Occupation", placeholder: "e.g. Student, Engineer" },
+    { key: "phone" as const, label: "Phone", placeholder: "+93 700 000 000" },
+    { key: "location" as const, label: "Location", placeholder: "Kabul, Afghanistan" },
   ];
 
   return (
@@ -79,13 +142,69 @@ const Profile = () => {
           </CardContent>
         </Card>
 
-        {/* Account Details */}
+        {/* Editable Profile Fields */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle className="font-serif text-lg">Profile Information</CardTitle>
+            {!editing && (
+              <Button variant="ghost" size="sm" className="gap-1.5" onClick={() => setEditing(true)}>
+                <Pencil className="w-4 h-4" />
+                Edit
+              </Button>
+            )}
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {editing ? (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {editableFields.map((field) => (
+                    <div key={field.key} className="space-y-2">
+                      <Label htmlFor={field.key}>{field.label}</Label>
+                      <Input
+                        id={field.key}
+                        value={form[field.key]}
+                        onChange={(e) => setForm((prev) => ({ ...prev, [field.key]: e.target.value }))}
+                        placeholder={field.placeholder}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-2 pt-2">
+                  <Button onClick={handleSave} disabled={saving} className="gap-1.5">
+                    <Save className="w-4 h-4" />
+                    {saving ? "Saving..." : "Save Changes"}
+                  </Button>
+                  <Button variant="outline" onClick={handleCancel} className="gap-1.5">
+                    <X className="w-4 h-4" />
+                    Cancel
+                  </Button>
+                </div>
+              </>
+            ) : (
+              editableFields.map((field) => (
+                <div key={field.key} className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <User className="w-4 h-4 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">{field.label}</p>
+                    <p className="text-sm font-medium text-foreground">
+                      {form[field.key] || "—"}
+                    </p>
+                  </div>
+                </div>
+              ))
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Read-only Account Details */}
         <Card>
           <CardHeader>
             <CardTitle className="font-serif text-lg">Account Details</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {details.map((item) => (
+            {readOnlyDetails.map((item) => (
               <div key={item.label} className="flex items-start gap-3">
                 <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <item.icon className="w-4 h-4 text-primary" />
