@@ -23,6 +23,7 @@ import AdminInternships from "./pages/AdminInternships";
 import AdminWebinars from "./pages/AdminWebinars";
 import AdminCourses from "./pages/AdminCourses";
 import AdminSubscribers from "./pages/AdminSubscribers";
+import SavedOpportunities from "./pages/SavedOpportunities";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
 import About from "./pages/About";
