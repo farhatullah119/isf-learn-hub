@@ -50,7 +50,7 @@ const Register = () => {
 
       toast({
         title: "Account created!",
-        description: "Please check your email to verify your account before signing in.",
+        description: "You can now sign in with your credentials.",
       });
       navigate("/login");
     } catch (error: any) {
