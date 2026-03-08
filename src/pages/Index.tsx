@@ -3,6 +3,7 @@ import { GraduationCap, Briefcase, BookOpen, Video, Users, ArrowRight, Globe, Aw
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Layout from "@/components/Layout";
+import NewsletterBanner from "@/components/NewsletterBanner";
 import afghanistanFlag from "@/assets/afghanistan-flag.png";
 
 const features = [
@@ -178,6 +179,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Newsletter Banner */}
+      <NewsletterBanner />
 
       {/* CTA Section */}
       <section className="py-16 md:py-24">

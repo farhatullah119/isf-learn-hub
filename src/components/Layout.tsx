@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, GraduationCap, MessageCircle, LogIn, UserPlus, LogOut, User } from "lucide-react";
+import { Menu, X, GraduationCap, MessageCircle, LogIn, UserPlus, LogOut, User, Loader2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -24,14 +26,40 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [subEmail, setSubEmail] = useState("");
+  const [subscribing, setSubscribing] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { user, profile, loading, signOut } = useAuth();
+  const { toast } = useToast();
   const displayName = profile?.full_name || (user?.email?.split("@")[0] ?? "Profile");
 
   const handleSignOut = async () => {
     await signOut();
     navigate("/");
+  };
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!subEmail.trim()) return;
+    setSubscribing(true);
+    try {
+      const { error } = await supabase.from("newsletter_subscribers").insert({ email: subEmail.trim().toLowerCase() } as any);
+      if (error) {
+        if (error.code === "23505") {
+          toast({ title: "Already subscribed!", description: "This email is already on our list." });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({ title: "Subscribed! 🎉", description: "You'll receive new opportunities in your inbox." });
+      }
+      setSubEmail("");
+    } catch (err: any) {
+      toast({ title: "Error", description: err.message, variant: "destructive" });
+    } finally {
+      setSubscribing(false);
+    }
   };
 
   return (
@@ -231,15 +259,19 @@ const Layout = ({ children }: LayoutProps) => {
               <p className="text-sm text-primary-foreground/80 mb-3">
                 Subscribe to get the latest opportunities
               </p>
-              <div className="flex gap-2">
+              <form onSubmit={handleSubscribe} className="flex gap-2">
                 <Input
+                  type="email"
                   placeholder="Your email"
+                  value={subEmail}
+                  onChange={(e) => setSubEmail(e.target.value)}
+                  required
                   className="bg-primary-foreground/10 border-primary-foreground/20 placeholder:text-primary-foreground/50"
                 />
-                <Button variant="secondary" size="sm">
-                  Subscribe
+                <Button variant="secondary" size="sm" type="submit" disabled={subscribing}>
+                  {subscribing ? <Loader2 className="h-4 w-4 animate-spin" /> : "Subscribe"}
                 </Button>
-              </div>
+              </form>
             </div>
           </div>
           <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-sm text-primary-foreground/60">

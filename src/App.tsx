@@ -22,6 +22,7 @@ import AdminScholarships from "./pages/AdminScholarships";
 import AdminInternships from "./pages/AdminInternships";
 import AdminWebinars from "./pages/AdminWebinars";
 import AdminCourses from "./pages/AdminCourses";
+import AdminSubscribers from "./pages/AdminSubscribers";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
 import About from "./pages/About";
@@ -61,6 +62,7 @@ const App = () => (
           <Route path="/admin/internships" element={<AdminInternships />} />
           <Route path="/admin/webinars" element={<AdminWebinars />} />
           <Route path="/admin/courses" element={<AdminCourses />} />
+          <Route path="/admin/subscribers" element={<AdminSubscribers />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />

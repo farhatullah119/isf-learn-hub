@@ -8,6 +8,7 @@ import {
   Users,
   Settings,
   ArrowLeft,
+  Mail,
 } from "lucide-react";
 import {
   Sidebar,
@@ -31,6 +32,7 @@ const menuItems = [
   { title: "Internships", url: "/admin/internships", icon: Users },
   { title: "Webinars", url: "/admin/webinars", icon: Video },
   { title: "Courses", url: "/admin/courses", icon: BookOpen },
+  { title: "Subscribers", url: "/admin/subscribers", icon: Mail },
 ];
 
 export default function AdminSidebar() {
