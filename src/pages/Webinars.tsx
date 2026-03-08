@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { Skeleton } from "@/components/ui/skeleton";
+import PageHeader from "@/components/PageHeader";
 
 const Webinars = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,12 +23,10 @@ const Webinars = () => {
 
   return (
     <Layout>
-      <section className="bg-amber-500 py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <h1 className="font-serif text-3xl md:text-5xl font-bold text-white mb-4">
-            Webinars & Seminars
-          </h1>
-          <p className="text-lg text-white/90 max-w-2xl">
+      <PageHeader
+        title="Webinars & Seminars"
+        description="Join free webinars and seminars from industry experts and thought leaders."
+      />
             Join free online events led by experts. Learn from industry professionals and connect with fellow students.
           </p>
         </div>

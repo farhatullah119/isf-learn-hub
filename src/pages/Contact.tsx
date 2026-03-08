@@ -39,17 +39,10 @@ const Contact = () => {
 
   return (
     <Layout>
-      {/* Header */}
-      <section className="bg-primary py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <h1 className="font-serif text-3xl md:text-5xl font-bold text-primary-foreground mb-4">
-            Contact Us
-          </h1>
-          <p className="text-lg text-primary-foreground/90 max-w-2xl">
-            Have questions? We're here to help. Reach out to us and we'll respond as soon as possible.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        title="Contact Us"
+        description="Have questions? We're here to help. Reach out to us and we'll respond as soon as possible."
+      />
 
       {/* Contact Content */}
       <section className="py-12">

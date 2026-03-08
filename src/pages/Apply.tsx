@@ -82,17 +82,10 @@ const applicationPortals = [
 const Apply = () => {
   return (
     <Layout>
-      {/* Header */}
-      <section className="bg-primary py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <h1 className="font-serif text-3xl md:text-5xl font-bold text-primary-foreground mb-4">
-            How to Apply
-          </h1>
-          <p className="text-lg text-primary-foreground/90 max-w-2xl">
-            Your step-by-step guide to applying to colleges and universities worldwide.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        title="How to Apply"
+        description="Your step-by-step guide to applying to colleges and universities worldwide."
+      />
 
       {/* Application Steps */}
       <section className="py-12">

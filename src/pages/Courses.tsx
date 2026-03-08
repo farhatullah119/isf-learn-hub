@@ -4,6 +4,7 @@ import SearchBar from "@/components/SearchBar";
 import OpportunityCard from "@/components/OpportunityCard";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { Skeleton } from "@/components/ui/skeleton";
+import PageHeader from "@/components/PageHeader";
 
 const Courses = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -19,16 +20,10 @@ const Courses = () => {
 
   return (
     <Layout>
-      <section className="bg-purple-600 py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <h1 className="font-serif text-3xl md:text-5xl font-bold text-white mb-4">
-            Free Online Courses
-          </h1>
-          <p className="text-lg text-white/90 max-w-2xl">
-            Access world-class education from top universities. Earn certificates and build valuable skills at no cost.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        title="Free Online Courses"
+        description="Access world-class education from top universities. Earn certificates and build valuable skills at no cost."
+      />
 
       <section className="py-8 border-b border-border bg-card">
         <div className="container mx-auto px-4">

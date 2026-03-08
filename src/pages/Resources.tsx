@@ -70,17 +70,10 @@ const featuredResources = [
 const Resources = () => {
   return (
     <Layout>
-      {/* Header */}
-      <section className="bg-primary py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <h1 className="font-serif text-3xl md:text-5xl font-bold text-primary-foreground mb-4">
-            Study Resources
-          </h1>
-          <p className="text-lg text-primary-foreground/90 max-w-2xl">
-            Access free study materials, guides, and tools to help you succeed in your academic journey.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        title="Study Resources"
+        description="Access free study materials, guides, and tools to help you succeed in your academic journey."
+      />
 
       {/* Featured Resources */}
       <section className="py-12 bg-muted">
