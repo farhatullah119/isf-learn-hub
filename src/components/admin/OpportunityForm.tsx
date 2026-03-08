@@ -119,6 +119,13 @@ export default function OpportunityForm({ open, onOpenChange, editingId, initial
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2 sm:col-span-2">
+              <Label>Thumbnail Image</Label>
+              <ImageUpload
+                imageUrl={form.image_url || null}
+                onUploaded={(url) => setForm({ ...form, image_url: url || "" })}
+              />
+            </div>
+            <div className="space-y-2 sm:col-span-2">
               <Label>Title *</Label>
               <Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} required />
             </div>
