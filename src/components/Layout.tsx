@@ -171,6 +171,14 @@ const Layout = ({ children }: LayoutProps) => {
                   {user ? (
                     <>
                       <Link
+                        to="/saved"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted"
+                      >
+                        <Heart className="w-4 h-4" />
+                        Saved
+                      </Link>
+                      <Link
                         to="/profile"
                         onClick={() => setMobileMenuOpen(false)}
                         className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted"
