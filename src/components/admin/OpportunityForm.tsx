@@ -74,6 +74,7 @@ export default function OpportunityForm({ open, onOpenChange, editingId, initial
         job_requirements: initialData.job_requirements || "",
         work_experience: initialData.work_experience || "",
         submission_guidelines: initialData.submission_guidelines || "",
+        image_url: initialData.image_url || "",
       };
     }
     return { ...emptyForm, category: defaultCategory || "scholarship" };
