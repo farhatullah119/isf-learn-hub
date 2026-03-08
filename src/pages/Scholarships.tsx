@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, Clock, Building2, GraduationCap, AlertTriangle } from "lucide-react";
 import { isDeadlineExpired } from "@/lib/deadline";
+import SaveButton from "@/components/SaveButton";
 
 const regions = ["United States", "United Kingdom", "Germany", "Europe", "Australia", "Sweden", "Malaysia", "Afghanistan"];
 
