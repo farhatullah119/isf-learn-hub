@@ -11,6 +11,8 @@ import Courses from "./pages/Courses";
 import Resources from "./pages/Resources";
 import Apply from "./pages/Apply";
 import Contact from "./pages/Contact";
+import Login from "./pages/Login";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
