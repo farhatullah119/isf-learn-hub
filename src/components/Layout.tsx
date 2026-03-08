@@ -26,7 +26,8 @@ const Layout = ({ children }: LayoutProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, loading, signOut } = useAuth();
+  const { user, profile, loading, signOut } = useAuth();
+  const displayName = profile?.full_name || (user?.email?.split("@")[0] ?? "Profile");
 
   const handleSignOut = async () => {
     await signOut();
