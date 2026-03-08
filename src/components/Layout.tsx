@@ -122,6 +122,38 @@ const Layout = ({ children }: LayoutProps) => {
                   {link.name}
                 </Link>
               ))}
+              {!loading && (
+                <div className="border-t border-border pt-2 mt-2 space-y-2">
+                  {user ? (
+                    <button
+                      onClick={() => { handleSignOut(); setMobileMenuOpen(false); }}
+                      className="flex items-center gap-2 w-full px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      Sign Out
+                    </button>
+                  ) : (
+                    <>
+                      <Link
+                        to="/login"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted"
+                      >
+                        <LogIn className="w-4 h-4" />
+                        Login
+                      </Link>
+                      <Link
+                        to="/register"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium bg-primary text-primary-foreground"
+                      >
+                        <UserPlus className="w-4 h-4" />
+                        Register
+                      </Link>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           </nav>
         )}
