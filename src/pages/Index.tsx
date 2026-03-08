@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { GraduationCap, Briefcase, BookOpen, Video, Users, ArrowRight, Globe, Award, TrendingUp } from "lucide-react";
+import { GraduationCap, Briefcase, BookOpen, Video, Users, ArrowRight, Globe, Award, TrendingUp, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Layout from "@/components/Layout";
@@ -19,6 +19,13 @@ const features = [
     description: "Discover internship opportunities to kickstart your career.",
     link: "/internships",
     color: "bg-secondary/10 text-secondary",
+  },
+  {
+    icon: Building2,
+    title: "Jobs",
+    description: "Find job opportunities from companies and organizations worldwide.",
+    link: "/jobs",
+    color: "bg-accent/10 text-accent-foreground",
   },
   {
     icon: Video,

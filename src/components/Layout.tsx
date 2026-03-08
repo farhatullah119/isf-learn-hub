@@ -8,6 +8,7 @@ const navLinks = [
   { name: "Home", path: "/" },
   { name: "Scholarships", path: "/scholarships" },
   { name: "Internships", path: "/internships" },
+  { name: "Jobs", path: "/jobs" },
   { name: "Webinars & Seminars", path: "/webinars" },
   { name: "Free Courses", path: "/courses" },
   { name: "Study Resources", path: "/resources" },
