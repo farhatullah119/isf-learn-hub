@@ -72,7 +72,7 @@ const Layout = ({ children }: LayoutProps) => {
                       <Link to="/profile">
                         <Button variant="ghost" size="sm" className="gap-1.5">
                           <User className="w-4 h-4" />
-                          Profile
+                          {displayName}
                         </Button>
                       </Link>
                       <Button variant="ghost" size="sm" onClick={handleSignOut} className="gap-1.5">
