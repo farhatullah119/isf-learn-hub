@@ -103,8 +103,8 @@ const JobDetail = () => {
         </Link>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-6">
+          {/* Sidebar - Job Overview (first on mobile) */}
+          <div className="space-y-6 lg:order-2">
             {/* Status Badge */}
             <div className="flex items-center gap-3 flex-wrap">
               <Badge className="bg-accent/10 text-accent-foreground border-accent/20" variant="outline">
