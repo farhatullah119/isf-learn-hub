@@ -40,6 +40,7 @@ const emptyForm: OpportunityInsert = {
   job_requirements: "",
   work_experience: "",
   submission_guidelines: "",
+  image_url: "",
 };
 
 interface OpportunityFormProps {
