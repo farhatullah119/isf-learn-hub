@@ -27,7 +27,7 @@ const Scholarships = () => {
       <PageHeader
         title="Scholarships"
         description="Discover scholarships from around the world to fund your education and achieve your academic dreams."
-
+      />
       <section className="py-8 border-b border-border bg-card">
         <div className="container mx-auto px-4 space-y-4">
           <SearchBar value={searchQuery} onChange={setSearchQuery} placeholder="Search scholarships..." />

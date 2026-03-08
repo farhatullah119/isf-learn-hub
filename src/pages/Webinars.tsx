@@ -26,7 +26,7 @@ const Webinars = () => {
       <PageHeader
         title="Webinars & Seminars"
         description="Join free webinars and seminars from industry experts and thought leaders."
-
+      />
       <section className="py-8 border-b border-border bg-card">
         <div className="container mx-auto px-4">
           <SearchBar value={searchQuery} onChange={setSearchQuery} placeholder="Search webinars and seminars..." />
