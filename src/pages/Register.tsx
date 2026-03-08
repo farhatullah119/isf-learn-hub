@@ -7,23 +7,31 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import Layout from "@/components/Layout";
-import { LogIn } from "lucide-react";
+import { UserPlus } from "lucide-react";
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const { signIn } = useAuth();
+  const { signUp } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      toast({ title: "Error", description: "Passwords do not match.", variant: "destructive" });
+      return;
+    }
     setSubmitting(true);
     try {
-      await signIn(email, password);
-      toast({ title: "Signed in successfully!" });
-      navigate("/");
+      await signUp(email, password);
+      toast({
+        title: "Account created!",
+        description: "Please check your email to verify your account before signing in.",
+      });
+      navigate("/login");
     } catch (error: any) {
       toast({ title: "Error", description: error.message, variant: "destructive" });
     } finally {
@@ -37,10 +45,10 @@ const Login = () => {
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <div className="mx-auto mb-4 h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
-              <LogIn className="h-6 w-6 text-primary" />
+              <UserPlus className="h-6 w-6 text-primary" />
             </div>
-            <CardTitle className="font-serif text-2xl">Sign In</CardTitle>
-            <CardDescription>Sign in to your account</CardDescription>
+            <CardTitle className="font-serif text-2xl">Create Account</CardTitle>
+            <CardDescription>Sign up to access all features</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -67,14 +75,26 @@ const Login = () => {
                   minLength={6}
                 />
               </div>
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  minLength={6}
+                />
+              </div>
               <Button type="submit" className="w-full" disabled={submitting}>
-                {submitting ? "Signing in..." : "Sign In"}
+                {submitting ? "Creating account..." : "Sign Up"}
               </Button>
             </form>
             <div className="mt-4 text-center text-sm text-muted-foreground">
-              Don't have an account?{" "}
-              <Link to="/register" className="underline hover:text-primary">
-                Sign up
+              Already have an account?{" "}
+              <Link to="/login" className="underline hover:text-primary">
+                Sign in
               </Link>
             </div>
           </CardContent>
@@ -84,4 +104,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

@@ -15,6 +15,7 @@ import Resources from "./pages/Resources";
 import Apply from "./pages/Apply";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Admin from "./pages/Admin";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/apply" element={<Apply />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

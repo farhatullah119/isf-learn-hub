@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Menu, X, GraduationCap, Search, MessageCircle } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, GraduationCap, MessageCircle, LogIn, UserPlus, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/hooks/use-auth";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -23,6 +24,13 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, loading, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -55,6 +63,31 @@ const Layout = ({ children }: LayoutProps) => {
                   {link.name}
                 </Link>
               ))}
+              {!loading && (
+                <>
+                  {user ? (
+                    <Button variant="ghost" size="sm" onClick={handleSignOut} className="ml-2 gap-1.5">
+                      <LogOut className="w-4 h-4" />
+                      Sign Out
+                    </Button>
+                  ) : (
+                    <>
+                      <Link to="/login">
+                        <Button variant="ghost" size="sm" className="ml-2 gap-1.5">
+                          <LogIn className="w-4 h-4" />
+                          Login
+                        </Button>
+                      </Link>
+                      <Link to="/register">
+                        <Button size="sm" className="gap-1.5">
+                          <UserPlus className="w-4 h-4" />
+                          Register
+                        </Button>
+                      </Link>
+                    </>
+                  )}
+                </>
+              )}
             </nav>
 
             {/* Mobile menu button */}
@@ -89,6 +122,38 @@ const Layout = ({ children }: LayoutProps) => {
                   {link.name}
                 </Link>
               ))}
+              {!loading && (
+                <div className="border-t border-border pt-2 mt-2 space-y-2">
+                  {user ? (
+                    <button
+                      onClick={() => { handleSignOut(); setMobileMenuOpen(false); }}
+                      className="flex items-center gap-2 w-full px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      Sign Out
+                    </button>
+                  ) : (
+                    <>
+                      <Link
+                        to="/login"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted"
+                      >
+                        <LogIn className="w-4 h-4" />
+                        Login
+                      </Link>
+                      <Link
+                        to="/register"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium bg-primary text-primary-foreground"
+                      >
+                        <UserPlus className="w-4 h-4" />
+                        Register
+                      </Link>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           </nav>
         )}
