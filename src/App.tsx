@@ -15,6 +15,7 @@ import Resources from "./pages/Resources";
 import Apply from "./pages/Apply";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Admin from "./pages/Admin";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";

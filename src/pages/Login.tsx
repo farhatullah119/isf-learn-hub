@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,9 +12,8 @@ import { LogIn } from "lucide-react";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isSignUp, setIsSignUp] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -22,15 +21,9 @@ const Login = () => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      if (isSignUp) {
-        await signUp(email, password);
-        toast({ title: "Account created!", description: "You can now sign in." });
-        setIsSignUp(false);
-      } else {
-        await signIn(email, password);
-        toast({ title: "Signed in successfully!" });
-        navigate("/admin");
-      }
+      await signIn(email, password);
+      toast({ title: "Signed in successfully!" });
+      navigate("/");
     } catch (error: any) {
       toast({ title: "Error", description: error.message, variant: "destructive" });
     } finally {
@@ -46,10 +39,8 @@ const Login = () => {
             <div className="mx-auto mb-4 h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
               <LogIn className="h-6 w-6 text-primary" />
             </div>
-            <CardTitle className="text-2xl">{isSignUp ? "Create Account" : "Admin Login"}</CardTitle>
-            <CardDescription>
-              {isSignUp ? "Sign up for an account" : "Sign in to manage opportunities"}
-            </CardDescription>
+            <CardTitle className="font-serif text-2xl">Sign In</CardTitle>
+            <CardDescription>Sign in to your account</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -60,7 +51,7 @@ const Login = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@example.com"
+                  placeholder="you@example.com"
                   required
                 />
               </div>
@@ -77,17 +68,14 @@ const Login = () => {
                 />
               </div>
               <Button type="submit" className="w-full" disabled={submitting}>
-                {submitting ? "Please wait..." : isSignUp ? "Sign Up" : "Sign In"}
+                {submitting ? "Signing in..." : "Sign In"}
               </Button>
             </form>
             <div className="mt-4 text-center text-sm text-muted-foreground">
-              <button
-                type="button"
-                onClick={() => setIsSignUp(!isSignUp)}
-                className="underline hover:text-primary"
-              >
-                {isSignUp ? "Already have an account? Sign in" : "Need an account? Sign up"}
-              </button>
+              Don't have an account?{" "}
+              <Link to="/register" className="underline hover:text-primary">
+                Sign up
+              </Link>
             </div>
           </CardContent>
         </Card>
