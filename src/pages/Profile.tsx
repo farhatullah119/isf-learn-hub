@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { User, Mail, Calendar, Shield, LogOut } from "lucide-react";
 
 const Profile = () => {
-  const { user, isAdmin, loading, signOut } = useAuth();
+  const { user, profile, isAdmin, loading, signOut } = useAuth();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -40,7 +40,11 @@ const Profile = () => {
   }
 
   const details = [
+    { icon: User, label: "Full Name", value: profile?.full_name || "—" },
     { icon: Mail, label: "Email", value: user.email },
+    { icon: Shield, label: "Occupation", value: profile?.occupation || "—" },
+    { icon: Mail, label: "Phone", value: profile?.phone || "—" },
+    { icon: Shield, label: "Location", value: profile?.location || "—" },
     {
       icon: Calendar,
       label: "Account Created",
@@ -49,19 +53,6 @@ const Profile = () => {
             year: "numeric",
             month: "long",
             day: "numeric",
-          })
-        : "—",
-    },
-    {
-      icon: Calendar,
-      label: "Last Sign In",
-      value: user.last_sign_in_at
-        ? new Date(user.last_sign_in_at).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
           })
         : "—",
     },
@@ -80,9 +71,9 @@ const Profile = () => {
               <User className="h-8 w-8 text-primary" />
             </div>
             <div>
-              <h2 className="font-serif text-xl font-bold">{user.email}</h2>
+              <h2 className="font-serif text-xl font-bold">{profile?.full_name || user.email}</h2>
               <p className="text-sm text-muted-foreground">
-                {isAdmin ? "Administrator" : "Member"}
+                {profile?.occupation || (isAdmin ? "Administrator" : "Member")}
               </p>
             </div>
           </CardContent>

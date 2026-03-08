@@ -26,7 +26,8 @@ const Layout = ({ children }: LayoutProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, loading, signOut } = useAuth();
+  const { user, profile, loading, signOut } = useAuth();
+  const displayName = profile?.full_name || (user?.email?.split("@")[0] ?? "Profile");
 
   const handleSignOut = async () => {
     await signOut();
@@ -71,7 +72,7 @@ const Layout = ({ children }: LayoutProps) => {
                       <Link to="/profile">
                         <Button variant="ghost" size="sm" className="gap-1.5">
                           <User className="w-4 h-4" />
-                          Profile
+                          {displayName}
                         </Button>
                       </Link>
                       <Button variant="ghost" size="sm" onClick={handleSignOut} className="gap-1.5">
@@ -141,7 +142,7 @@ const Layout = ({ children }: LayoutProps) => {
                         className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted"
                       >
                         <User className="w-4 h-4" />
-                        Profile
+                        {displayName}
                       </Link>
                       <button
                         onClick={() => { handleSignOut(); setMobileMenuOpen(false); }}
