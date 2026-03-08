@@ -7,6 +7,7 @@ interface Profile {
   occupation: string | null;
   phone: string | null;
   location: string | null;
+  avatar_url: string | null;
 }
 
 export function useAuth() {
