@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, GraduationCap, Search } from "lucide-react";
+import { Menu, X, GraduationCap, Search, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -96,6 +96,18 @@ const Layout = ({ children }: LayoutProps) => {
 
       {/* Main Content */}
       <main className="flex-1">{children}</main>
+
+      {/* WhatsApp Floating Button */}
+      <a
+        href="https://whatsapp.com/channel/0029VauLh2hFXUucg7QyOg2r"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-[hsl(142,70%,45%)] px-5 py-3 text-white shadow-lg transition-transform hover:scale-105"
+        aria-label="Join our WhatsApp channel"
+      >
+        <MessageCircle className="w-5 h-5" />
+        <span className="text-sm font-medium hidden sm:inline">Join WhatsApp</span>
+      </a>
 
       {/* Footer */}
       <footer className="bg-primary text-primary-foreground py-12">
