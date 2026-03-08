@@ -52,7 +52,12 @@ const Jobs = () => {
                 const expired = isDeadlineExpired(j.deadline);
                 return (
                   <Link key={j.id} to={`/jobs/${j.id}`}>
-                    <Card className={`card-hover h-full ${expired ? "opacity-75" : ""}`}>
+                    <Card className={`card-hover h-full overflow-hidden ${expired ? "opacity-75" : ""}`}>
+                      {j.image_url && (
+                        <div className="w-full h-40 overflow-hidden">
+                          <img src={j.image_url} alt={j.title} className="w-full h-full object-cover" />
+                        </div>
+                      )}
                       <CardHeader className="pb-3">
                         <div className="flex items-center gap-2 flex-wrap">
                           <Badge className="bg-accent/10 text-accent-foreground border-accent/20" variant="outline">

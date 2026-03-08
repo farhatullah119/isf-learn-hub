@@ -49,6 +49,11 @@ const InternshipDetail = () => {
         <Link to="/internships" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6"><ArrowLeft className="w-4 h-4" />Back to Internships</Link>
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
+            {item.image_url && (
+              <div className="rounded-lg overflow-hidden border border-border">
+                <img src={item.image_url} alt={item.title} className="w-full h-64 object-cover" />
+              </div>
+            )}
             <div className="flex items-center gap-3">
               <Badge className="bg-secondary/10 text-secondary border-secondary/20" variant="outline">Internship</Badge>
               {expired && <Badge variant="destructive" className="flex items-center gap-1"><AlertTriangle className="w-3 h-3" />Expired</Badge>}

@@ -148,6 +148,11 @@ const JobDetail = () => {
 
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6 lg:order-1">
+            {job.image_url && (
+              <div className="rounded-lg overflow-hidden border border-border">
+                <img src={job.image_url} alt={job.title} className="w-full h-64 object-cover" />
+              </div>
+            )}
             {/* Status Badges */}
             <div className="flex items-center gap-3 flex-wrap">
               <Badge className="bg-accent/10 text-accent-foreground border-accent/20" variant="outline">
