@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, Clock, Building2, AlertTriangle } from "lucide-react";
 import { isDeadlineExpired } from "@/lib/deadline";
+import SaveButton from "@/components/SaveButton";
 
 const Internships = () => {
   const [searchQuery, setSearchQuery] = useState("");
