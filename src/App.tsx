@@ -19,6 +19,7 @@ import Register from "./pages/Register";
 import Admin from "./pages/Admin";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
+import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
