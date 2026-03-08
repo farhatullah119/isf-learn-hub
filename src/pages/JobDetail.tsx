@@ -7,8 +7,30 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { MapPin, Clock, Building2, ExternalLink, ArrowLeft, Calendar, Briefcase, GraduationCap, Globe, AlertTriangle } from "lucide-react";
+import { MapPin, Clock, Building2, ExternalLink, ArrowLeft, Calendar, Briefcase, AlertTriangle, Info, FileText, GraduationCap, ClipboardList, Send } from "lucide-react";
 import { isDeadlineExpired } from "@/lib/deadline";
+
+const SectionCard = ({ icon: Icon, title, content }: { icon: React.ElementType; title: string; content: string }) => {
+  const lines = content.split("\n").filter((l) => l.trim());
+  return (
+    <Card>
+      <CardContent className="p-6">
+        <div className="flex items-center gap-2 mb-4">
+          <Icon className="w-5 h-5 text-primary" />
+          <h2 className="font-serif text-xl font-bold">{title}</h2>
+        </div>
+        <ul className="space-y-2 text-sm text-muted-foreground">
+          {lines.map((line, i) => (
+            <li key={i} className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+              <span>{line}</span>
+            </li>
+          ))}
+        </ul>
+      </CardContent>
+    </Card>
+  );
+};
 
 const JobDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -56,9 +78,6 @@ const JobDetail = () => {
     );
   }
 
-  // Split description into paragraphs for better readability
-  const descriptionParagraphs = job.description.split("\n").filter((p) => p.trim());
-
   const overviewItems = [
     { icon: MapPin, label: "Location", value: job.location },
     { icon: Building2, label: "Organization", value: job.provider },
@@ -67,12 +86,14 @@ const JobDetail = () => {
     { icon: Briefcase, label: "Category", value: job.category },
   ].filter((item) => item.value);
 
+  // Check for structured fields
+  const hasStructuredData = job.about_org || job.job_description_full || job.job_requirements || job.work_experience || job.submission_guidelines;
+
   return (
     <Layout>
       <PageHeader title={job.title} description={job.provider || "Job Opportunity"} />
 
       <div className="container mx-auto px-4 py-8">
-        {/* Back button */}
         <Link
           to="/jobs"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6"
@@ -85,7 +106,7 @@ const JobDetail = () => {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* Status Badge */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap">
               <Badge className="bg-accent/10 text-accent-foreground border-accent/20" variant="outline">
                 Job
               </Badge>
@@ -102,20 +123,55 @@ const JobDetail = () => {
               )}
             </div>
 
-            {/* Description */}
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="font-serif text-xl font-bold mb-4">Job Description</h2>
-                <div className="prose prose-sm max-w-none text-muted-foreground space-y-3">
-                  {descriptionParagraphs.map((paragraph, i) => (
-                    <p key={i}>{paragraph}</p>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            {/* Structured Sections */}
+            {hasStructuredData ? (
+              <>
+                {job.about_org && (
+                  <Card>
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Info className="w-5 h-5 text-primary" />
+                        <h2 className="font-serif text-xl font-bold">About {job.provider}</h2>
+                      </div>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{job.about_org}</p>
+                    </CardContent>
+                  </Card>
+                )}
+
+                {job.job_description_full && (
+                  <SectionCard icon={FileText} title="Job Description" content={job.job_description_full} />
+                )}
+
+                {job.job_requirements && (
+                  <SectionCard icon={ClipboardList} title="Job Requirements" content={job.job_requirements} />
+                )}
+
+                {job.work_experience && (
+                  <SectionCard icon={GraduationCap} title="Work Experience" content={job.work_experience} />
+                )}
+
+                {job.submission_guidelines && (
+                  <SectionCard icon={Send} title="Submission Guidelines" content={job.submission_guidelines} />
+                )}
+              </>
+            ) : (
+              <Card>
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <FileText className="w-5 h-5 text-primary" />
+                    <h2 className="font-serif text-xl font-bold">Job Description</h2>
+                  </div>
+                  <div className="prose prose-sm max-w-none text-muted-foreground space-y-3">
+                    {job.description.split("\n").filter((p) => p.trim()).map((paragraph, i) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </div>
 
-          {/* Sidebar - Job Overview */}
+          {/* Sidebar */}
           <div className="space-y-6">
             <Card>
               <CardContent className="p-6">
@@ -139,7 +195,6 @@ const JobDetail = () => {
               </CardContent>
             </Card>
 
-            {/* Apply Button */}
             <Card>
               <CardContent className="p-6">
                 {expired ? (
