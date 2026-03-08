@@ -60,15 +60,20 @@ const Jobs = () => {
                         </div>
                       )}
                       <CardHeader className="pb-3">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <Badge className="bg-accent/10 text-accent-foreground border-accent/20" variant="outline">
-                            Job
-                          </Badge>
-                          {expired && (
-                            <Badge variant="destructive" className="flex items-center gap-1">
-                              <AlertTriangle className="w-3 h-3" />
-                              Expired
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <Badge className="bg-accent/10 text-accent-foreground border-accent/20" variant="outline">
+                              Job
                             </Badge>
+                            {expired && (
+                              <Badge variant="destructive" className="flex items-center gap-1">
+                                <AlertTriangle className="w-3 h-3" />
+                                Expired
+                              </Badge>
+                            )}
+                          </div>
+                          <SaveButton opportunityId={j.id} />
+                        </div>
                           )}
                         </div>
                         <h3 className="font-serif text-lg font-semibold mt-2">{j.title}</h3>
