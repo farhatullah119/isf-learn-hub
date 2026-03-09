@@ -14,6 +14,7 @@ const navLinks = [
   { name: "Jobs", path: "/jobs" },
   { name: "Webinars & Seminars", path: "/webinars" },
   { name: "Free Courses", path: "/courses" },
+  { name: "Blog", path: "/blog" },
   { name: "Study Resources", path: "/resources" },
   { name: "Apply", path: "/apply" },
   { name: "Contact", path: "/contact" },
