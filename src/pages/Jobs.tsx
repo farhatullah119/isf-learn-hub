@@ -28,6 +28,7 @@ const Jobs = () => {
 
   return (
     <Layout>
+      <SEOHead title="Jobs" description="Find job opportunities from companies and organizations worldwide. Start your career journey today." path="/jobs" />
       <PageHeader
         title="Jobs"
         description="Find job opportunities from companies and organizations worldwide."

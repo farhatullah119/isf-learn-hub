@@ -31,6 +31,7 @@ const Scholarships = () => {
 
   return (
     <Layout>
+      <SEOHead title="Scholarships" description="Browse international and local scholarships to fund your education. Find fully funded opportunities worldwide." path="/scholarships" />
       <PageHeader
         title="Scholarships"
         description="Discover scholarships from around the world to fund your education and achieve your academic dreams."

@@ -30,6 +30,7 @@ const values = [
 const About = () => {
   return (
     <Layout>
+      <SEOHead title="About Us" description="Learn about ISF Learning Hub's mission to empower students worldwide with scholarships, internships, and educational opportunities." path="/about" />
       <PageHeader
         title="About Us"
         description="Join, Learn, Share, and Grow Together."
