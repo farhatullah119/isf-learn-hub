@@ -23,6 +23,9 @@ import AdminInternships from "./pages/AdminInternships";
 import AdminWebinars from "./pages/AdminWebinars";
 import AdminCourses from "./pages/AdminCourses";
 import AdminSubscribers from "./pages/AdminSubscribers";
+import AdminBlog from "./pages/AdminBlog";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import SavedOpportunities from "./pages/SavedOpportunities";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
@@ -55,6 +58,8 @@ const App = () => (
           <Route path="/apply" element={<Apply />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />
@@ -64,6 +69,7 @@ const App = () => (
           <Route path="/admin/webinars" element={<AdminWebinars />} />
           <Route path="/admin/courses" element={<AdminCourses />} />
           <Route path="/admin/subscribers" element={<AdminSubscribers />} />
+          <Route path="/admin/blog" element={<AdminBlog />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/saved" element={<SavedOpportunities />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
