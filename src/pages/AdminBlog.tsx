@@ -138,10 +138,6 @@ const AdminBlog = () => {
   return (
     <AdminLayout title="Blog Posts" description="Manage articles and guides">
       <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="font-serif text-2xl font-bold text-foreground">Blog Posts</h1>
-          <p className="text-sm text-muted-foreground">Manage articles and guides</p>
-        </div>
         <Dialog open={formOpen} onOpenChange={(open) => { if (!open) resetForm(); setFormOpen(open); }}>
           <DialogTrigger asChild>
             <Button className="gap-1.5">
