@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Layout from "@/components/Layout";
 import NewsletterBanner from "@/components/NewsletterBanner";
 import FeaturedSection from "@/components/FeaturedSection";
+import SEOHead from "@/components/SEOHead";
 import afghanistanFlag from "@/assets/afghanistan-flag.png";
 
 const features = [
