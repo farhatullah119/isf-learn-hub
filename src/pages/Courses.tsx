@@ -66,6 +66,7 @@ const Courses = () => {
                             <Badge className="bg-purple-100 text-purple-700 border-purple-200" variant="outline">Course</Badge>
                             {expired && <Badge variant="destructive" className="flex items-center gap-1"><AlertTriangle className="w-3 h-3" />Expired</Badge>}
                             {item.featured && <Badge className="bg-secondary/10 text-secondary border-secondary/20" variant="outline">Featured</Badge>}
+                            {(item as any).sponsored && <SponsoredBadge />}
                           </div>
                           <SaveButton opportunityId={item.id} />
                         </div>
