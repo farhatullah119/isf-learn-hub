@@ -81,7 +81,11 @@ const Courses = () => {
                         </div>
                       </CardContent>
                       <CardFooter>
-                        <Button className="w-full" variant={expired ? "outline" : "default"}>{expired ? "View Details" : "View & Enroll"}</Button>
+                        {(item as any).affiliate_url ? (
+                          <AffiliateLink url={(item as any).affiliate_url} label={(item as any).affiliate_label || "Enroll Now"} />
+                        ) : (
+                          <Button className="w-full" variant={expired ? "outline" : "default"}>{expired ? "View Details" : "View & Enroll"}</Button>
+                        )}
                       </CardFooter>
                     </Card>
                   </Link>
