@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowRight, Clock, Star, AlertTriangle } from "lucide-react";
 import { isDeadlineExpired } from "@/lib/deadline";
+import CountdownTimer from "@/components/CountdownTimer";
 
 function daysUntilDeadline(deadline: string | null): number | null {
   if (!deadline) return null;
@@ -183,23 +184,23 @@ const FeaturedSection = () => {
                 const isVeryUrgent = days <= 3;
                 return (
                   <Link key={opp.id} to={getDetailPath(opp.category, opp.id)}>
-                    <Card className={`card-hover h-full group ${isVeryUrgent ? "border-destructive/40" : ""}`}>
+                    <Card className={`card-hover h-full group ${isVeryUrgent ? "border-destructive/40 shadow-destructive/10 shadow-lg" : ""}`}>
                       <CardContent className="p-5">
                         <div className="flex items-center justify-between mb-3">
                           <Badge variant="outline" className="text-xs capitalize">
                             {opp.category}
                           </Badge>
-                          <Badge variant={isVeryUrgent ? "destructive" : "secondary"} className="text-xs font-mono">
-                            {days === 0 ? "Last day!" : `${days}d left`}
-                          </Badge>
+                          {isVeryUrgent && (
+                            <span className="flex items-center gap-1 text-xs text-destructive font-medium">
+                              <AlertTriangle className="w-3.5 h-3.5 animate-pulse" />
+                              Urgent
+                            </span>
+                          )}
                         </div>
-                        <h3 className="font-serif font-semibold text-foreground line-clamp-2 mb-2 group-hover:text-primary transition-colors">
+                        <h3 className="font-serif font-semibold text-foreground line-clamp-2 mb-3 group-hover:text-primary transition-colors">
                           {opp.title}
                         </h3>
-                        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                          <Clock className="w-3.5 h-3.5" />
-                          <span>{opp.deadline}</span>
-                        </div>
+                        <CountdownTimer deadline={opp.deadline!} />
                       </CardContent>
                     </Card>
                   </Link>
