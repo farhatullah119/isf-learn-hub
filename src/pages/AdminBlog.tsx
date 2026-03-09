@@ -167,7 +167,7 @@ const AdminBlog = () => {
               </div>
               <div>
                 <Label>Cover Image</Label>
-                <ImageUpload value={form.image_url} onChange={(url) => setForm((f) => ({ ...f, image_url: url }))} bucket="opportunity-images" />
+                <ImageUpload imageUrl={form.image_url || null} onUploaded={(url) => setForm((f) => ({ ...f, image_url: url || "" }))} />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
