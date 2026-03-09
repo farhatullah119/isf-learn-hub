@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 import Layout from "@/components/Layout";
 import SearchBar from "@/components/SearchBar";
 import CategoryFilter from "@/components/CategoryFilter";
@@ -30,6 +31,7 @@ const Scholarships = () => {
 
   return (
     <Layout>
+      <SEOHead title="Scholarships" description="Browse international and local scholarships to fund your education. Find fully funded opportunities worldwide." path="/scholarships" />
       <PageHeader
         title="Scholarships"
         description="Discover scholarships from around the world to fund your education and achieve your academic dreams."

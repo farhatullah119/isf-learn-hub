@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 import Layout from "@/components/Layout";
 import SearchBar from "@/components/SearchBar";
 import { MapPin, Clock, Building2, ExternalLink, AlertTriangle } from "lucide-react";
@@ -27,6 +28,7 @@ const Jobs = () => {
 
   return (
     <Layout>
+      <SEOHead title="Jobs" description="Find job opportunities from companies and organizations worldwide. Start your career journey today." path="/jobs" />
       <PageHeader
         title="Jobs"
         description="Find job opportunities from companies and organizations worldwide."

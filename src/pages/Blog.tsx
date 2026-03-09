@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Layout from "@/components/Layout";
+import SEOHead from "@/components/SEOHead";
 import PageHeader from "@/components/PageHeader";
 import SearchBar from "@/components/SearchBar";
 import { Card, CardContent } from "@/components/ui/card";
@@ -42,6 +43,7 @@ const Blog = () => {
 
   return (
     <Layout>
+      <SEOHead title="Blog & Guides" description="Expert tips, guides, and articles on scholarships, CV writing, study abroad, and career advice for students." path="/blog" />
       <PageHeader
         title="Blog & Guides"
         description="Expert tips, guides, and articles to help you succeed in your academic and career journey."

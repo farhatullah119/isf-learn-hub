@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
+import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, FileText, Video, Download, ExternalLink, GraduationCap, PenTool, Calculator } from "lucide-react";
@@ -61,6 +62,7 @@ const featuredResources = [
 const Resources = () => {
   return (
     <Layout>
+      <SEOHead title="Study Resources" description="Free study materials, application guides, and educational resources to help you succeed in your academic journey." path="/resources" />
       <PageHeader
         title="Study Resources"
         description="Access free study materials, guides, and tools to help you succeed in your academic journey."

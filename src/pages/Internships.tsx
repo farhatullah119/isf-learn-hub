@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 import Layout from "@/components/Layout";
 import SearchBar from "@/components/SearchBar";
 import { useOpportunities } from "@/hooks/use-opportunities";
@@ -26,6 +27,7 @@ const Internships = () => {
 
   return (
     <Layout>
+      <SEOHead title="Internships" description="Discover internship opportunities to kickstart your career. Find remote and on-site internships worldwide." path="/internships" />
       <PageHeader
         title="Internships"
         description="Kickstart your career with internship opportunities at leading companies and organizations worldwide."

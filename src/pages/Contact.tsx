@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
+import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -40,6 +41,7 @@ const Contact = () => {
 
   return (
     <Layout>
+      <SEOHead title="Contact Us" description="Get in touch with ISF Learning Hub. We're here to help with questions about scholarships, internships, and educational opportunities." path="/contact" />
       <PageHeader
         title="Contact Us"
         description="Have questions? We're here to help. Reach out to us and we'll respond as soon as possible."

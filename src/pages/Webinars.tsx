@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
+import SEOHead from "@/components/SEOHead";
 import SearchBar from "@/components/SearchBar";
 import { Calendar, Clock, Users, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
@@ -23,6 +24,7 @@ const Webinars = () => {
 
   return (
     <Layout>
+      <SEOHead title="Webinars & Seminars" description="Join free webinars and seminars from industry experts. Learn about scholarships, careers, and study abroad." path="/webinars" />
       <PageHeader
         title="Webinars & Seminars"
         description="Join free webinars and seminars from industry experts and thought leaders."

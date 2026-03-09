@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Layout from "@/components/Layout";
 import NewsletterBanner from "@/components/NewsletterBanner";
 import FeaturedSection from "@/components/FeaturedSection";
+import SEOHead from "@/components/SEOHead";
 import afghanistanFlag from "@/assets/afghanistan-flag.png";
 
 const features = [
@@ -55,7 +56,11 @@ const stats = [
 const Index = () => {
   return (
     <Layout>
-      {/* Hero Section */}
+      <SEOHead
+        title="Scholarships, Internships & Free Courses"
+        description="Find scholarships, internships, jobs, webinars, and free courses worldwide. ISF Learning Hub empowers students to join, learn, share, and grow together."
+        path="/"
+      />
       <section className="relative overflow-hidden py-20 md:py-32">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${afghanistanFlag})` }} />
         <div className="absolute inset-0 bg-foreground/60" />
