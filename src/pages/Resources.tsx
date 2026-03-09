@@ -62,6 +62,7 @@ const featuredResources = [
 const Resources = () => {
   return (
     <Layout>
+      <SEOHead title="Study Resources" description="Free study materials, application guides, and educational resources to help you succeed in your academic journey." path="/resources" />
       <PageHeader
         title="Study Resources"
         description="Access free study materials, guides, and tools to help you succeed in your academic journey."

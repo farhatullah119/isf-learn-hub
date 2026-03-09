@@ -27,6 +27,7 @@ const Courses = () => {
 
   return (
     <Layout>
+      <SEOHead title="Free Courses" description="Access certified free online courses from top universities worldwide. Learn new skills and advance your career." path="/courses" />
       <PageHeader
         title="Free Online Courses"
         description="Access world-class education from top universities. Earn certificates and build valuable skills at no cost."

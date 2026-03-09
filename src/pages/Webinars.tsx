@@ -24,6 +24,7 @@ const Webinars = () => {
 
   return (
     <Layout>
+      <SEOHead title="Webinars & Seminars" description="Join free webinars and seminars from industry experts. Learn about scholarships, careers, and study abroad." path="/webinars" />
       <PageHeader
         title="Webinars & Seminars"
         description="Join free webinars and seminars from industry experts and thought leaders."
