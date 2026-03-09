@@ -10,6 +10,7 @@ import {
   ArrowLeft,
   Mail,
   FileText,
+  Megaphone,
 } from "lucide-react";
 import {
   Sidebar,
@@ -35,6 +36,7 @@ const menuItems = [
   { title: "Courses", url: "/admin/courses", icon: BookOpen },
   { title: "Subscribers", url: "/admin/subscribers", icon: Mail },
   { title: "Blog", url: "/admin/blog", icon: FileText },
+  { title: "Ad Banners", url: "/admin/ads", icon: Megaphone },
 ];
 
 export default function AdminSidebar() {

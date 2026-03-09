@@ -27,6 +27,7 @@ import AdminSubscribers from "./pages/AdminSubscribers";
 import AdminBlog from "./pages/AdminBlog";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import AdminAds from "./pages/AdminAds";
 import SavedOpportunities from "./pages/SavedOpportunities";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
@@ -72,6 +73,7 @@ const App = () => (
           <Route path="/admin/courses" element={<AdminCourses />} />
           <Route path="/admin/subscribers" element={<AdminSubscribers />} />
           <Route path="/admin/blog" element={<AdminBlog />} />
+          <Route path="/admin/ads" element={<AdminAds />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/saved" element={<SavedOpportunities />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />

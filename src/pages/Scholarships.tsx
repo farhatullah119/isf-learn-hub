@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Clock, Building2, GraduationCap, AlertTriangle } from "lucide-react";
 import { isDeadlineExpired } from "@/lib/deadline";
 import SaveButton from "@/components/SaveButton";
+import SponsoredBadge from "@/components/SponsoredBadge";
+import AdBanner from "@/components/AdBanner";
 
 const regions = ["United States", "United Kingdom", "Germany", "Europe", "Australia", "Sweden", "Malaysia", "Afghanistan"];
 
@@ -83,6 +85,7 @@ const Scholarships = () => {
                                 Featured
                               </Badge>
                             )}
+                            {(s as any).sponsored && <SponsoredBadge />}
                           </div>
                           <SaveButton opportunityId={s.id} />
                         </div>
@@ -127,6 +130,7 @@ const Scholarships = () => {
               <p className="text-muted-foreground">No scholarships found matching your criteria.</p>
             </div>
           )}
+          <AdBanner placement="listing-inline" className="mt-8" />
         </div>
       </section>
     </Layout>

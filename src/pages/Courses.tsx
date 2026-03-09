@@ -12,6 +12,9 @@ import { Button } from "@/components/ui/button";
 import { Clock, Building2, AlertTriangle } from "lucide-react";
 import { isDeadlineExpired } from "@/lib/deadline";
 import SaveButton from "@/components/SaveButton";
+import SponsoredBadge from "@/components/SponsoredBadge";
+import AffiliateLink from "@/components/AffiliateLink";
+import AdBanner from "@/components/AdBanner";
 
 const Courses = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -63,6 +66,7 @@ const Courses = () => {
                             <Badge className="bg-purple-100 text-purple-700 border-purple-200" variant="outline">Course</Badge>
                             {expired && <Badge variant="destructive" className="flex items-center gap-1"><AlertTriangle className="w-3 h-3" />Expired</Badge>}
                             {item.featured && <Badge className="bg-secondary/10 text-secondary border-secondary/20" variant="outline">Featured</Badge>}
+                            {(item as any).sponsored && <SponsoredBadge />}
                           </div>
                           <SaveButton opportunityId={item.id} />
                         </div>
@@ -77,7 +81,11 @@ const Courses = () => {
                         </div>
                       </CardContent>
                       <CardFooter>
-                        <Button className="w-full" variant={expired ? "outline" : "default"}>{expired ? "View Details" : "View & Enroll"}</Button>
+                        {(item as any).affiliate_url ? (
+                          <AffiliateLink url={(item as any).affiliate_url} label={(item as any).affiliate_label || "Enroll Now"} />
+                        ) : (
+                          <Button className="w-full" variant={expired ? "outline" : "default"}>{expired ? "View Details" : "View & Enroll"}</Button>
+                        )}
                       </CardFooter>
                     </Card>
                   </Link>
@@ -88,6 +96,7 @@ const Courses = () => {
           {!isLoading && filtered.length === 0 && (
             <div className="text-center py-12"><p className="text-muted-foreground">No courses found matching your criteria.</p></div>
           )}
+          <AdBanner placement="listing-inline" className="mt-8" />
         </div>
       </section>
     </Layout>

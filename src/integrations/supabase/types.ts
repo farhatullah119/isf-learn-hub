@@ -14,6 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      ad_banners: {
+        Row: {
+          click_count: number
+          created_at: string
+          end_date: string | null
+          id: string
+          image_url: string
+          impression_count: number
+          is_active: boolean
+          link_url: string
+          placement: string
+          start_date: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          click_count?: number
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          image_url: string
+          impression_count?: number
+          is_active?: boolean
+          link_url: string
+          placement?: string
+          start_date?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          click_count?: number
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          image_url?: string
+          impression_count?: number
+          is_active?: boolean
+          link_url?: string
+          placement?: string
+          start_date?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       blog_posts: {
         Row: {
           author: string | null
@@ -80,6 +125,8 @@ export type Database = {
       opportunities: {
         Row: {
           about_org: string | null
+          affiliate_label: string | null
+          affiliate_url: string | null
           attendees: number | null
           category: string
           created_at: string
@@ -97,6 +144,7 @@ export type Database = {
           location: string | null
           provider: string | null
           speaker: string | null
+          sponsored: boolean | null
           submission_guidelines: string | null
           title: string
           updated_at: string
@@ -104,6 +152,8 @@ export type Database = {
         }
         Insert: {
           about_org?: string | null
+          affiliate_label?: string | null
+          affiliate_url?: string | null
           attendees?: number | null
           category: string
           created_at?: string
@@ -121,6 +171,7 @@ export type Database = {
           location?: string | null
           provider?: string | null
           speaker?: string | null
+          sponsored?: boolean | null
           submission_guidelines?: string | null
           title: string
           updated_at?: string
@@ -128,6 +179,8 @@ export type Database = {
         }
         Update: {
           about_org?: string | null
+          affiliate_label?: string | null
+          affiliate_url?: string | null
           attendees?: number | null
           category?: string
           created_at?: string
@@ -145,6 +198,7 @@ export type Database = {
           location?: string | null
           provider?: string | null
           speaker?: string | null
+          sponsored?: boolean | null
           submission_guidelines?: string | null
           title?: string
           updated_at?: string

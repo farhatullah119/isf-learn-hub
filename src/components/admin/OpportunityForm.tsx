@@ -212,6 +212,20 @@ export default function OpportunityForm({ open, onOpenChange, editingId, initial
               <Switch checked={form.featured || false} onCheckedChange={(v) => setForm({ ...form, featured: v })} />
               <Label>Featured (pinned to top)</Label>
             </div>
+
+            <div className="flex items-center gap-2">
+              <Switch checked={(form as any).sponsored || false} onCheckedChange={(v) => setForm({ ...form, sponsored: v } as any)} />
+              <Label>Sponsored (monetized listing)</Label>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Affiliate URL (optional)</Label>
+              <Input value={(form as any).affiliate_url || ""} onChange={(e) => setForm({ ...form, affiliate_url: e.target.value } as any)} placeholder="https://partner.com?ref=isf" />
+            </div>
+            <div className="space-y-2">
+              <Label>Affiliate Button Label</Label>
+              <Input value={(form as any).affiliate_label || ""} onChange={(e) => setForm({ ...form, affiliate_label: e.target.value } as any)} placeholder="Enroll Now" />
+            </div>
           </div>
           <DialogFooter>
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>Cancel</Button>
