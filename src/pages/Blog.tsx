@@ -43,6 +43,7 @@ const Blog = () => {
 
   return (
     <Layout>
+      <SEOHead title="Blog & Guides" description="Expert tips, guides, and articles on scholarships, CV writing, study abroad, and career advice for students." path="/blog" />
       <PageHeader
         title="Blog & Guides"
         description="Expert tips, guides, and articles to help you succeed in your academic and career journey."
