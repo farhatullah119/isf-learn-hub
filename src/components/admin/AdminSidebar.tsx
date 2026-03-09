@@ -10,6 +10,7 @@ import {
   ArrowLeft,
   Mail,
   FileText,
+  Megaphone,
 } from "lucide-react";
 import {
   Sidebar,
