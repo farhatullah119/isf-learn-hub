@@ -108,6 +108,12 @@ const Index = () => {
       {/* Featured & Urgent Deadlines */}
       <FeaturedSection />
 
+      {/* Sponsored Ad Banner */}
+      <section className="py-6 bg-muted/50">
+        <div className="container mx-auto px-4">
+          <AdBanner placement="homepage-top" />
+        </div>
+      </section>
       {/* Features Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
