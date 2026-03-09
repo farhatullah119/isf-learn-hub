@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowRight, Clock, Star, AlertTriangle } from "lucide-react";
 import { isDeadlineExpired } from "@/lib/deadline";
+import CountdownTimer from "@/components/CountdownTimer";
 
 function daysUntilDeadline(deadline: string | null): number | null {
   if (!deadline) return null;
