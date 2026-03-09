@@ -12,6 +12,9 @@ import { Button } from "@/components/ui/button";
 import { Clock, Building2, AlertTriangle } from "lucide-react";
 import { isDeadlineExpired } from "@/lib/deadline";
 import SaveButton from "@/components/SaveButton";
+import SponsoredBadge from "@/components/SponsoredBadge";
+import AffiliateLink from "@/components/AffiliateLink";
+import AdBanner from "@/components/AdBanner";
 
 const Courses = () => {
   const [searchQuery, setSearchQuery] = useState("");
