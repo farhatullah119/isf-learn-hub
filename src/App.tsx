@@ -27,6 +27,7 @@ import AdminSubscribers from "./pages/AdminSubscribers";
 import AdminBlog from "./pages/AdminBlog";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import AdminAds from "./pages/AdminAds";
 import SavedOpportunities from "./pages/SavedOpportunities";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
