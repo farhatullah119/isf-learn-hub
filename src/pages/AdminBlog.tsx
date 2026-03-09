@@ -136,7 +136,7 @@ const AdminBlog = () => {
   };
 
   return (
-    <AdminLayout>
+    <AdminLayout title="Blog Posts" description="Manage articles and guides">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="font-serif text-2xl font-bold text-foreground">Blog Posts</h1>
