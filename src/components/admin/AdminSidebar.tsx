@@ -9,6 +9,7 @@ import {
   Settings,
   ArrowLeft,
   Mail,
+  FileText,
 } from "lucide-react";
 import {
   Sidebar,
