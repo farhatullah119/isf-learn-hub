@@ -6,6 +6,7 @@ import Layout from "@/components/Layout";
 import NewsletterBanner from "@/components/NewsletterBanner";
 import FeaturedSection from "@/components/FeaturedSection";
 import SEOHead from "@/components/SEOHead";
+import AdBanner from "@/components/AdBanner";
 import afghanistanFlag from "@/assets/afghanistan-flag.png";
 
 const features = [
