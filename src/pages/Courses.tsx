@@ -96,6 +96,7 @@ const Courses = () => {
           {!isLoading && filtered.length === 0 && (
             <div className="text-center py-12"><p className="text-muted-foreground">No courses found matching your criteria.</p></div>
           )}
+          <AdBanner placement="listing-inline" className="mt-8" />
         </div>
       </section>
     </Layout>
