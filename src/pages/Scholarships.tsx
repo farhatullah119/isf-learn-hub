@@ -85,6 +85,7 @@ const Scholarships = () => {
                                 Featured
                               </Badge>
                             )}
+                            {(s as any).sponsored && <SponsoredBadge />}
                           </div>
                           <SaveButton opportunityId={s.id} />
                         </div>
