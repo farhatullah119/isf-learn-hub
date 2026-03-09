@@ -130,6 +130,7 @@ const Scholarships = () => {
               <p className="text-muted-foreground">No scholarships found matching your criteria.</p>
             </div>
           )}
+          <AdBanner placement="listing-inline" className="mt-8" />
         </div>
       </section>
     </Layout>
