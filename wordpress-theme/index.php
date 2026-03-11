@@ -85,6 +85,29 @@ get_header();
     </div>
 </section>
 
+<!-- Latest Opportunities -->
+<section class="job-posts" id="latest">
+    <div class="container">
+        <div class="section-header">
+            <h2>Latest Opportunities</h2>
+            <p>Don't miss these recently posted scholarships, internships, and more.</p>
+        </div>
+        <div class="job-posts-grid">
+            <div class="job-post">
+                <span class="job-badge badge-scholarship">Scholarship</span>
+                <h3>Scholarship in Turkey 2026</h3>
+                <div class="job-meta">
+                    <span>🌍 Turkey</span>
+                    <span>📅 Deadline: 30 April 2026</span>
+                </div>
+                <p>Fully funded scholarship opportunity for international students to study in Turkey.</p>
+                <a href="#" class="btn btn-primary">Apply Now →</a>
+            </div>
+            <!-- Add more .job-post cards here -->
+        </div>
+    </div>
+</section>
+
 <!-- Mission -->
 <section class="mission" id="about">
     <div class="container">
