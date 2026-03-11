@@ -79,7 +79,7 @@ const Submit = () => {
         <div className="min-h-[60vh] flex items-center justify-center px-4">
           <Card className="max-w-md w-full text-center">
             <CardContent className="pt-8 pb-8 space-y-4">
-              <CheckCircle className="h-16 w-16 text-green-500 mx-auto" />
+              <CheckCircle className="h-16 w-16 text-primary mx-auto" />
               <h2 className="text-2xl font-bold text-foreground">Thank You!</h2>
               <p className="text-muted-foreground">
                 Your opportunity has been submitted and is under review. It will appear on the site once approved by our team.
