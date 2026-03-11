@@ -271,6 +271,51 @@ export type Database = {
           },
         ]
       }
+      submissions: {
+        Row: {
+          category: string
+          created_at: string
+          deadline: string | null
+          description: string
+          id: string
+          link: string
+          location: string | null
+          organization: string | null
+          status: string
+          submitter_email: string | null
+          submitter_name: string | null
+          title: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          deadline?: string | null
+          description: string
+          id?: string
+          link: string
+          location?: string | null
+          organization?: string | null
+          status?: string
+          submitter_email?: string | null
+          submitter_name?: string | null
+          title: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          deadline?: string | null
+          description?: string
+          id?: string
+          link?: string
+          location?: string | null
+          organization?: string | null
+          status?: string
+          submitter_email?: string | null
+          submitter_name?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
