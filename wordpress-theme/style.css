@@ -130,6 +130,33 @@ a{text-decoration:none;color:inherit}
 .icon-webinar{background:#fef3c7;color:#b45309}
 .icon-courses{background:#ede9fe;color:#7c3aed}
 
+/* ── Job Posts / Opportunities ────────────────── */
+.job-posts{padding:4rem 0;background:var(--card)}
+.job-posts .section-header{text-align:center;margin-bottom:3rem}
+.job-posts .section-header h2{font-size:clamp(1.5rem,3vw,2.25rem);margin-bottom:1rem}
+.job-posts .section-header p{color:var(--muted-fg);font-size:1.125rem;max-width:40rem;margin:0 auto}
+.job-posts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+
+.job-post{
+  background:var(--background);border-radius:var(--radius);
+  padding:1.5rem;box-shadow:var(--shadow-card);
+  transition:transform .3s,box-shadow .3s;
+  display:flex;flex-direction:column;gap:.75rem;
+}
+.job-post:hover{transform:translateY(-4px);box-shadow:0 10px 30px -5px rgba(0,0,0,.12)}
+.job-post h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700}
+.job-post p{font-size:.875rem;color:var(--muted-fg);flex:1}
+.job-meta{display:flex;gap:1rem;font-size:.8125rem;color:var(--muted-fg);flex-wrap:wrap}
+.job-badge{
+  display:inline-block;padding:.25rem .75rem;border-radius:2rem;
+  font-size:.75rem;font-weight:600;width:fit-content;
+}
+.badge-scholarship{background:rgba(26,63,122,.1);color:var(--primary)}
+.badge-internship{background:rgba(42,157,143,.1);color:var(--secondary)}
+.badge-course{background:#ede9fe;color:#7c3aed}
+.badge-webinar{background:#fef3c7;color:#b45309}
+.job-post .btn{align-self:flex-start;margin-top:.5rem}
+
 /* ── Mission ──────────────────────────────────── */
 .mission{padding:4rem 0;background:var(--muted)}
 .mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
