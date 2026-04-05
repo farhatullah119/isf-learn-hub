@@ -24,6 +24,7 @@ import AdminInternships from "./pages/AdminInternships";
 import AdminWebinars from "./pages/AdminWebinars";
 import AdminCourses from "./pages/AdminCourses";
 import AdminSubscribers from "./pages/AdminSubscribers";
+import AdminSubmissions from "./pages/AdminSubmissions";
 import AdminBlog from "./pages/AdminBlog";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
