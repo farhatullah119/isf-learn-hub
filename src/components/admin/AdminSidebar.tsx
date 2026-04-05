@@ -11,6 +11,7 @@ import {
   Mail,
   FileText,
   Megaphone,
+  Inbox,
 } from "lucide-react";
 import {
   Sidebar,
@@ -37,6 +38,7 @@ const menuItems = [
   { title: "Subscribers", url: "/admin/subscribers", icon: Mail },
   { title: "Blog", url: "/admin/blog", icon: FileText },
   { title: "Ad Banners", url: "/admin/ads", icon: Megaphone },
+  { title: "Submissions", url: "/admin/submissions", icon: Inbox },
 ];
 
 export default function AdminSidebar() {
