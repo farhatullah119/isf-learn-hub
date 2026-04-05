@@ -11,6 +11,7 @@ import {
   Mail,
   FileText,
   Megaphone,
+  Inbox,
 } from "lucide-react";
 import {
   Sidebar,
