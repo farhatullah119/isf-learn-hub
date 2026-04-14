@@ -7,7 +7,7 @@ import NewsletterBanner from "@/components/NewsletterBanner";
 import FeaturedSection from "@/components/FeaturedSection";
 import SEOHead from "@/components/SEOHead";
 import AdBanner from "@/components/AdBanner";
-import afghanistanFlag from "@/assets/afghanistan-flag.png";
+
 
 const features = [
   {
@@ -63,8 +63,7 @@ const Index = () => {
         path="/"
       />
       <section className="relative overflow-hidden py-20 md:py-32">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${afghanistanFlag})` }} />
-        <div className="absolute inset-0 bg-foreground/60" />
+        <div className="absolute inset-0 bg-primary" />
         <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-serif text-4xl md:text-6xl font-bold text-primary-foreground mb-6 animate-fade-in">
