@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import AdminLayout from "@/components/admin/AdminLayout";
@@ -6,14 +6,27 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Check, X, Eye, Trash2 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 export default function AdminSubmissions() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [viewing, setViewing] = useState<any>(null);
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [confirmAction, setConfirmAction] = useState<null | "approve" | "reject">(null);
 
   const { data: submissions = [], isLoading } = useQuery({
     queryKey: ["admin-submissions"],
@@ -27,9 +40,33 @@ export default function AdminSubmissions() {
     },
   });
 
+  const pendingSubmissions = useMemo(
+    () => submissions.filter((s: any) => s.status === "pending"),
+    [submissions]
+  );
+  const selectedPending = useMemo(
+    () => pendingSubmissions.filter((s: any) => selected.has(s.id)),
+    [pendingSubmissions, selected]
+  );
+  const allPendingSelected =
+    pendingSubmissions.length > 0 && selectedPending.length === pendingSubmissions.length;
+
+  const toggleOne = (id: string) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const toggleAllPending = () => {
+    if (allPendingSelected) setSelected(new Set());
+    else setSelected(new Set(pendingSubmissions.map((s: any) => s.id)));
+  };
+
   const approveMutation = useMutation({
     mutationFn: async (sub: any) => {
-      // Create opportunity from submission
       const { error: insertError } = await supabase.from("opportunities").insert({
         title: sub.title,
         description: sub.description,
@@ -40,8 +77,6 @@ export default function AdminSubmissions() {
         link: sub.link,
       });
       if (insertError) throw insertError;
-
-      // Update submission status
       const { error: updateError } = await supabase
         .from("submissions")
         .update({ status: "approved" })
@@ -80,14 +115,85 @@ export default function AdminSubmissions() {
     onError: (e: any) => toast({ title: "Error", description: e.message, variant: "destructive" }),
   });
 
+  const bulkApproveMutation = useMutation({
+    mutationFn: async (subs: any[]) => {
+      if (subs.length === 0) return { success: 0, failed: 0 };
+      const { error: insertError } = await supabase.from("opportunities").insert(
+        subs.map((sub) => ({
+          title: sub.title,
+          description: sub.description,
+          category: sub.category,
+          location: sub.location,
+          deadline: sub.deadline,
+          provider: sub.organization,
+          link: sub.link,
+        }))
+      );
+      if (insertError) throw insertError;
+      const { error: updateError } = await supabase
+        .from("submissions")
+        .update({ status: "approved" })
+        .in("id", subs.map((s) => s.id));
+      if (updateError) throw updateError;
+      return { count: subs.length };
+    },
+    onSuccess: (res: any) => {
+      queryClient.invalidateQueries({ queryKey: ["admin-submissions"] });
+      queryClient.invalidateQueries({ queryKey: ["opportunities"] });
+      setSelected(new Set());
+      toast({ title: `Approved ${res.count} submission${res.count === 1 ? "" : "s"}` });
+    },
+    onError: (e: any) => toast({ title: "Bulk approve failed", description: e.message, variant: "destructive" }),
+  });
+
+  const bulkRejectMutation = useMutation({
+    mutationFn: async (ids: string[]) => {
+      if (ids.length === 0) return { count: 0 };
+      const { error } = await supabase
+        .from("submissions")
+        .update({ status: "rejected" })
+        .in("id", ids);
+      if (error) throw error;
+      return { count: ids.length };
+    },
+    onSuccess: (res: any) => {
+      queryClient.invalidateQueries({ queryKey: ["admin-submissions"] });
+      setSelected(new Set());
+      toast({ title: `Rejected ${res.count} submission${res.count === 1 ? "" : "s"}` });
+    },
+    onError: (e: any) => toast({ title: "Bulk reject failed", description: e.message, variant: "destructive" }),
+  });
+
   const statusColor = (s: string) => {
     if (s === "approved") return "default";
     if (s === "rejected") return "destructive";
     return "secondary";
   };
 
+  const bulkBusy = bulkApproveMutation.isPending || bulkRejectMutation.isPending;
+
   return (
     <AdminLayout title="Submissions" description="Review user-submitted opportunities">
+      {selectedPending.length > 0 && (
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border bg-muted/40 px-4 py-3">
+          <div className="text-sm font-medium">
+            {selectedPending.length} pending submission{selectedPending.length === 1 ? "" : "s"} selected
+          </div>
+          <div className="flex gap-2">
+            <Button size="sm" variant="outline" onClick={() => setSelected(new Set())} disabled={bulkBusy}>
+              Clear
+            </Button>
+            <Button size="sm" variant="secondary" onClick={() => setConfirmAction("reject")} disabled={bulkBusy}>
+              <X className="h-3 w-3" /> Reject selected
+            </Button>
+            <Button size="sm" onClick={() => setConfirmAction("approve")} disabled={bulkBusy}>
+              {bulkBusy ? <Loader2 className="h-3 w-3 animate-spin" /> : <Check className="h-3 w-3" />}
+              Approve selected
+            </Button>
+          </div>
+        </div>
+      )}
+
       <Card>
         <CardContent className="p-0">
           {isLoading ? (
@@ -101,6 +207,14 @@ export default function AdminSubmissions() {
               <Table>
                 <TableHeader>
                   <TableRow>
+                    <TableHead className="w-10">
+                      <Checkbox
+                        checked={allPendingSelected}
+                        onCheckedChange={toggleAllPending}
+                        disabled={pendingSubmissions.length === 0}
+                        aria-label="Select all pending"
+                      />
+                    </TableHead>
                     <TableHead>Title</TableHead>
                     <TableHead>Category</TableHead>
                     <TableHead>Submitter</TableHead>
@@ -109,8 +223,16 @@ export default function AdminSubmissions() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {submissions.map((sub) => (
-                    <TableRow key={sub.id}>
+                  {submissions.map((sub: any) => (
+                    <TableRow key={sub.id} data-state={selected.has(sub.id) ? "selected" : undefined}>
+                      <TableCell>
+                        <Checkbox
+                          checked={selected.has(sub.id)}
+                          onCheckedChange={() => toggleOne(sub.id)}
+                          disabled={sub.status !== "pending"}
+                          aria-label="Select submission"
+                        />
+                      </TableCell>
                       <TableCell className="font-medium max-w-[200px] truncate">{sub.title}</TableCell>
                       <TableCell><Badge variant="secondary" className="capitalize">{sub.category}</Badge></TableCell>
                       <TableCell className="text-sm">{sub.submitter_name || sub.submitter_email || "Anonymous"}</TableCell>
@@ -162,6 +284,34 @@ export default function AdminSubmissions() {
           )}
         </DialogContent>
       </Dialog>
+
+      <AlertDialog open={!!confirmAction} onOpenChange={(open) => !open && setConfirmAction(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              {confirmAction === "approve" ? "Approve" : "Reject"} {selectedPending.length} submission
+              {selectedPending.length === 1 ? "" : "s"}?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              {confirmAction === "approve"
+                ? "These submissions will be published as live opportunities."
+                : "These submissions will be marked as rejected."}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                if (confirmAction === "approve") bulkApproveMutation.mutate(selectedPending);
+                else bulkRejectMutation.mutate(selectedPending.map((s: any) => s.id));
+                setConfirmAction(null);
+              }}
+            >
+              Confirm
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </AdminLayout>
   );
 }
