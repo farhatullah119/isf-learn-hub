@@ -29,7 +29,7 @@ const FeaturedSection = () => {
         .from("opportunities")
         .select("*")
         .eq("featured", true)
-        .eq("category", "scholarship")
+        .eq("category", "Scholarship")
         .order("created_at", { ascending: false })
         .limit(4);
       if (error) throw error;
@@ -66,7 +66,7 @@ const FeaturedSection = () => {
       webinar: "/webinars",
       course: "/courses",
     };
-    return paths[category] || "/";
+    return paths[category.toLowerCase()] || "/";
   };
 
   const getDetailPath = (category: string, id: string) => {
@@ -74,9 +74,10 @@ const FeaturedSection = () => {
       scholarship: `/scholarships/${id}`,
       internship: `/internships/${id}`,
       job: `/jobs/${id}`,
+      webinar: `/webinars/${id}`,
       course: `/courses/${id}`,
     };
-    return paths[category] || "/";
+    return paths[category.toLowerCase()] || "/";
   };
 
   return (
